@@ -1,4 +1,3 @@
-import { Header } from '@/layout/header'
 import { Providers } from '@/providers/providers'
 import { comicFont, sansFont, serifFont } from '../config/fonts'
 import '@/styles/index.css'
@@ -14,7 +13,7 @@ export default function RootLayout({
         className={`${sansFont.variable} ${comicFont.variable} ${serifFont.variable} antialiased`}
       >
         <Providers>
-          <Header></Header>
+          {/* <Header></Header> */}
           {children}
         </Providers>
       </body>

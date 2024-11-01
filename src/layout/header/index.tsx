@@ -1,9 +1,12 @@
 import { Logo } from './logo'
+import { Nav } from './nav'
+import { YmHeader } from './ym-header'
 
 export function Header() {
   return (
-    <header className="bg-background fixed inset-x-0 top-0 z-50 flex">
-      <Logo></Logo>
-    </header>
+    <YmHeader className="items-center justify-between">
+      <Logo />
+      <Nav />
+    </YmHeader>
   )
 }
