@@ -1,6 +1,7 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
+import { LenisProvider } from './lenis-provider'
 import { ThemeProvider } from './theme-provider'
 
 export function Providers({ children }: PropsWithChildren) {
@@ -11,7 +12,9 @@ export function Providers({ children }: PropsWithChildren) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <LenisProvider>
+        {children}
+      </LenisProvider>
     </ThemeProvider>
   )
 }

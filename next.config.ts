@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }))
     return config
   },
+  transpilePackages: ['next-mdx-remote'],
 }
 
 export default withBundleAnalyzer(nextConfig)
