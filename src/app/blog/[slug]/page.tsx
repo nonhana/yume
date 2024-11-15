@@ -18,13 +18,15 @@ export default async function Page(
 
   return (
     <div className="grid grid-cols-2">
-      <article className="prose dark:prose-invert">
-        <BlogTitle metadata={post.metadata} />
-        <CustomMDX source={post.content} />
-      </article>
+      <div className="px-20 pt-16">
+        <article className="prose dark:prose-invert">
+          <BlogTitle metadata={post.metadata} />
+          <CustomMDX source={post.content} />
+        </article>
 
-      <div className="flex flex-col">
-        <Tags tags={post.metadata.tags || []} />
+        <div className="flex flex-col">
+          <Tags tags={post.metadata.tags || []} />
+        </div>
       </div>
     </div>
   )

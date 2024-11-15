@@ -1,6 +1,7 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
+import { FontProvider } from './font-provider'
 import { LenisProvider } from './lenis-provider'
 import { ThemeProvider } from './theme-provider'
 
@@ -13,7 +14,9 @@ export function Providers({ children }: PropsWithChildren) {
       disableTransitionOnChange
     >
       <LenisProvider>
-        {children}
+        <FontProvider>
+          {children}
+        </FontProvider>
       </LenisProvider>
     </ThemeProvider>
   )

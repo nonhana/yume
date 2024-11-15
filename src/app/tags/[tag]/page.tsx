@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { getAllPosts, getAllTags, getPostsByTagSlug, sortTagsByCount } from '@/components/mdx/utils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tag } from '../../../components/common/tag'

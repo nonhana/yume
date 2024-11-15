@@ -1,23 +1,48 @@
 import { transformerCopyButton } from '@rehype-pretty/transformers'
-import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeAutoLinkHeadings, { type Options as RehypeAutoLinkHeadingsOptions } from 'rehype-autolink-headings'
+import rehypeKatex from 'rehype-katex'
+import rehypePrettyCode, { type Options as RehypePrettyCodeOptions } from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
+import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 
-export const OPTIONS = { mdxOptions: {
-  remarkPlugins: [],
-  rehypePlugins: [[rehypePrettyCode, { theme: 'github-dark', transformers: [
+const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
+  theme: 'ayu-dark',
+  transformers: [
     transformerCopyButton({
       visibility: 'always',
       feedbackDuration: 3_000,
     }),
-  ] }], [
-    rehypeAutoLinkHeadings,
-    {
-      behavior: 'wrap',
-      properties: {
-        className: ['subheading-anchor'],
-        ariaLabel: 'Link to section',
-      },
+  ],
+}
+
+const rehypeAutoLinkHeadingsOptions: RehypeAutoLinkHeadingsOptions = {
+  behavior: 'wrap',
+  properties: {
+    className: ['anchor'],
+    ariaHidden: true,
+    tabIndex: -1,
+  },
+  content: {
+    type: 'element',
+    tagName: 'span',
+    properties: {
+      className: ['anchor-icon'],
     },
-  ]],
+    children: [{ type: 'text', value: '→' }],
+  },
+}
+
+export const OPTIONS = { mdxOptions: {
+  remarkPlugins: [
+    remarkGfm,
+    remarkMath,
+  ],
+  rehypePlugins: [
+    [rehypePrettyCode, rehypePrettyCodeOptions],
+    rehypeSlug,
+    [rehypeAutoLinkHeadings, rehypeAutoLinkHeadingsOptions],
+    rehypeKatex,
+  ],
   format: 'mdx',
 } }
