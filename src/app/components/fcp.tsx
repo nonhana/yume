@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { IntroCard } from './intro-card'
 
-const SECTION_Y = 1500
+const SECTION_Y = 0
 
 export function Fcp() {
   return (
@@ -25,12 +25,6 @@ function CenterImg() {
     [0.4, 1],
   )
 
-  const backgroundSize = useTransform(
-    scrollY,
-    [0, SECTION_Y + 500],
-    ['170%', '100%'],
-  )
-
   const cardOpacity = useTransform(
     scrollY,
     [SECTION_Y, SECTION_Y + 500],
@@ -43,7 +37,6 @@ function CenterImg() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url("/imgs/bg.jpg")',
-          backgroundSize,
         }}
       >
         <motion.div className="absolute inset-0 z-10 bg-black" style={{ opacity: filterOpacity }} />

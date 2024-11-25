@@ -64,10 +64,10 @@ export function PreLoad({ children }: { children: React.ReactNode }) {
         >
           <motion.div
             className="mb-5 text-8xl font-bold"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
-              duration: 0.8,
+              duration: 1.2,
               type: 'spring',
               stiffness: 100,
             }}
@@ -76,11 +76,11 @@ export function PreLoad({ children }: { children: React.ReactNode }) {
           </motion.div>
           <motion.div
             className="text-3xl font-light tracking-wider text-white"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
               delay: 0.2,
-              duration: 0.8,
+              duration: 1.2,
               type: 'spring',
               stiffness: 100,
             }}

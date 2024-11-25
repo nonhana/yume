@@ -1,12 +1,21 @@
+'use client'
+
+import { HoverTrigger } from './hover-trigger'
 import { Logo } from './logo'
-import { Nav } from './nav'
-import { YmHeader } from './ym-header'
+
+import { NavBar } from './nav-bar'
 
 export function Header() {
   return (
-    <YmHeader className="items-center justify-between">
-      <Logo />
-      <Nav />
-    </YmHeader>
+    <header
+      className="flex-between fixed inset-x-0 top-0 z-50 bg-transparent px-9 py-5 text-white"
+    >
+      <HoverTrigger>
+        <Logo />
+      </HoverTrigger>
+      <HoverTrigger>
+        <NavBar />
+      </HoverTrigger>
+    </header>
   )
 }
