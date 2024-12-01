@@ -7,14 +7,20 @@ export function CenterImg() {
 
   const filterOpacity = useTransform(
     scrollY,
-    [SECTION_Y, SECTION_Y + OFFSET_Y],
+    [SECTION_Y - OFFSET_Y, SECTION_Y + OFFSET_Y],
     [0.25, 1],
   )
 
   const cardOpacity = useTransform(
     scrollY,
-    [SECTION_Y, SECTION_Y + OFFSET_Y],
+    [SECTION_Y - OFFSET_Y, SECTION_Y + OFFSET_Y],
     [1, 0],
+  )
+
+  const backgroundSize = useTransform(
+    scrollY,
+    [0, SECTION_Y],
+    ['140%', '100%'],
   )
 
   return (
@@ -23,12 +29,13 @@ export function CenterImg() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url("/imgs/bg.jpg")',
+          backgroundSize,
         }}
       >
         <motion.div className="absolute inset-0 z-10 bg-black" style={{ opacity: filterOpacity }} />
       </motion.div>
 
-      <motion.div className="relative z-20 flex h-full flex-col items-center justify-center" style={{ opacity: cardOpacity }}>
+      <motion.div className="flex-center relative z-20 h-full flex-col" style={{ opacity: cardOpacity }}>
         <IntroCard />
       </motion.div>
     </div>

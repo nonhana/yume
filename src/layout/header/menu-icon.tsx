@@ -19,7 +19,7 @@ export function MenuIcon() {
       exit="exit"
       transition={{
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeInOut',
       }}
     >
       <Menu className="size-6" />

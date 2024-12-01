@@ -1,8 +1,6 @@
 'use client'
 
-import { isHeaderHoveringAtom } from '@/store/header'
 import { motion } from 'framer-motion'
-import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 
 const links = [
@@ -18,7 +16,6 @@ const navVariants = {
   exit: { opacity: 0, y: -20 },
 }
 export function Nav() {
-  const isHeaderHovering = useAtomValue(isHeaderHoveringAtom)
   return (
     <motion.nav
       key="full-nav"
@@ -29,14 +26,14 @@ export function Nav() {
       exit="exit"
       transition={{
         duration: 0.5,
-        ease: isHeaderHovering ? 'easeOut' : 'easeIn',
+        ease: 'easeInOut',
       }}
     >
       {links.map(link => (
         <Link
           key={link.href}
           href={link.href}
-          className="font-sans transition-colors duration-300 hover:text-gray-400"
+          className="font-sans transition-colors duration-300 hover:text-green-200"
         >
           {link.label}
         </Link>

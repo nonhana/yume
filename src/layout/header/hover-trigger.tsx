@@ -10,7 +10,7 @@ export function HoverTrigger({ children, className }: PropsWithCC) {
     (hovering: boolean) => {
       setIsHeaderHovering(hovering)
     },
-    { wait: 100 },
+    { wait: 50 },
   )
 
   return (

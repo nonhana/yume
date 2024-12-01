@@ -1,5 +1,8 @@
+'use client'
+
 import { badgeVariants } from '@/components/ui/badge'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Button } from '../ui/button'
 
 interface TagProps {
   tag: string
@@ -7,16 +10,19 @@ interface TagProps {
   count?: number
 }
 export function Tag({ tag, current, count }: TagProps) {
+  const router = useRouter()
   return (
-    <Link
+    <Button
       className={badgeVariants({
         variant: current ? 'default' : 'secondary',
         className: 'no-underline rounded-md',
       })}
-      href={`/tags/${(tag)}`}
+      onClick={() => {
+        router.push(`/tags/${tag}`)
+      }}
     >
       {tag}
       {count ? `(${count})` : null}
-    </Link>
+    </Button>
   )
 }

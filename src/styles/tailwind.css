@@ -64,3 +64,11 @@
     --chart-5: 340 75% 55%;
   }
 }
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .relative-time {
+    white-space: nowrap;
+  }
+}
