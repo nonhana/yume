@@ -28,7 +28,7 @@ export function Nav() {
       animate="visible"
       exit="exit"
       transition={{
-        duration: isHeaderHovering ? 0.5 : 0.4,
+        duration: 0.5,
         ease: isHeaderHovering ? 'easeOut' : 'easeIn',
       }}
     >

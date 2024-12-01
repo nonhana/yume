@@ -18,11 +18,11 @@ export function MenuIcon() {
       animate="visible"
       exit="exit"
       transition={{
-        duration: 0.4,
+        duration: 0.5,
         ease: 'easeOut',
       }}
     >
-      <Menu className="size-6 cursor-pointer transition-colors duration-300 hover:text-gray-400" />
+      <Menu className="size-6" />
     </motion.div>
   )
 }

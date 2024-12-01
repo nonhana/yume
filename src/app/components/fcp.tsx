@@ -22,7 +22,7 @@ function CenterImg() {
   const filterOpacity = useTransform(
     scrollY,
     [SECTION_Y, SECTION_Y + 500],
-    [0.4, 1],
+    [0.25, 1],
   )
 
   const cardOpacity = useTransform(

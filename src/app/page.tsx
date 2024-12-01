@@ -7,7 +7,19 @@ export default function Home() {
       <main>
         <Fcp />
         <div className="h-screen bg-black">
-          rest of the page
+          <p className="text-white mix-blend-difference">
+            rest of the page
+          </p>
+        </div>
+        <div className="h-screen bg-white">
+          <p className="text-white mix-blend-difference">
+            rest of the page
+          </p>
+        </div>
+        <div className="h-screen bg-blue-300">
+          <p className="text-white mix-blend-difference">
+            rest of the page
+          </p>
         </div>
       </main>
     </PreLoad>
