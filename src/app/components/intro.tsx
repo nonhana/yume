@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
+import { SocialIcons } from './social-icons'
 
 export function Intro() {
   return (
@@ -18,6 +19,7 @@ export function Intro() {
       <p className="text-md break-words text-slate-200">
         Student | Front-end Developer
       </p>
+      <SocialIcons />
     </section>
   )
 }
