@@ -1,8 +1,8 @@
 import type { Post } from '@/types/post'
 import { RelativeTime } from '@/components/common/relativeTime'
-import { Tag } from '@/components/common/tag'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import { BtnTag } from './btn-tag'
 
 interface BlogItemProps {
   blog: Post
@@ -13,10 +13,15 @@ export function BlogItem({ blog }: BlogItemProps) {
   return (
     <Link href={`/blog/${blog.slug}`} className="group/link">
       <div className="flex-between">
-        <div className="flex gap-x-2">
-          <span className="text-lg">{metadata.title}</span>
+        <div className="flex items-center">
+          <span className="mr-8 text-xl hover:text-gray-400">{metadata.title}</span>
           {metadata.tags?.map((tag, index) => (
-            <Tag key={index} tag={tag} />
+            <>
+              <BtnTag key={tag} tag={tag} />
+              {index < metadata.tags!.length - 1 && (
+                <span className="mx-2 text-black/60">/</span>
+              )}
+            </>
           ))}
         </div>
         <div className="flex items-center gap-2">
