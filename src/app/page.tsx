@@ -1,5 +1,7 @@
-import { BlogSection } from './components/blog-section'
+import { Normal } from '@/layout/container/Normal'
+import { Blogs } from './components/blogs'
 import { Fcp } from './components/fcp'
+import { Friends } from './components/friends'
 import { PreLoad } from './components/pre-load'
 
 export default function Home() {
@@ -7,10 +9,10 @@ export default function Home() {
     <PreLoad>
       <main>
         <Fcp />
-        <BlogSection />
-        <section className="h-screen bg-white">
-
-        </section>
+        <Normal>
+          <Blogs />
+          <Friends />
+        </Normal>
       </main>
     </PreLoad>
   )
