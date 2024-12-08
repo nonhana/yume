@@ -14,7 +14,7 @@ export function BlogItem({ blog }: BlogItemProps) {
     <Link href={`/blog/${blog.slug}`} className="group/link">
       <div className="flex-between">
         <div className="flex items-center">
-          <span className="mr-8 text-xl hover:text-gray-400">{metadata.title}</span>
+          <span className="mr-8 text-xl">{metadata.title}</span>
           {metadata.tags?.map((tag, index) => (
             <>
               <BtnTag key={tag} tag={tag} />

@@ -1,20 +1,21 @@
 'use client'
+import { H1Link } from '@/components/common/link/h1-link'
+import { SectionAnimation } from '@/components/common/section-animation'
 import { friends } from '@/constants/friends'
 import { FriendCard } from './friend-card'
 import '@/styles/modules/horizontal-scroll.css'
 
 export function Friends() {
   return (
-    <section>
-      <h2 className="mb-10 text-center text-3xl font-bold">Friends</h2>
-      <div className="horizontal-scroll-wrapper squares no-scrollbar" data-lenis-prevent style={{ scrollBehavior: 'smooth' }}>
-        {friends.map((friend, index) => (
-          <FriendCard friend={friend} key={index} />
-        ))}
-        <div className="flex-center size-64">
-          share links?
+    <SectionAnimation>
+      <H1Link href="/friends">Friends</H1Link>
+      <div className="relative h-[30vh] w-full">
+        <div className="horizontal-scroll-wrapper squares no-scrollbar" data-lenis-prevent style={{ scrollBehavior: 'smooth' }}>
+          {friends.map((friend, index) => (
+            <FriendCard friend={friend} key={index} />
+          ))}
         </div>
       </div>
-    </section>
+    </SectionAnimation>
   )
 }

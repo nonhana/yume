@@ -1,30 +1,18 @@
+import { H1Link } from '@/components/common/link/h1-link'
+import { SectionAnimation } from '@/components/common/section-animation'
 import { getLatestPosts } from '@/components/mdx/utils'
-import Link from 'next/link'
-import { BlogAnimation } from './blog-animation'
 import { BlogItem } from './blog-item'
 
 export async function Blogs() {
   const latestBlogs = await getLatestPosts('blog')
   return (
-    <section className="h-screen">
-      <BlogAnimation>
-        <div className="flex-between mb-20">
-          <h1 className="text-4xl">
-            <Link href="/blog" className="transition-colors hover:text-gray-400">
-              Latest Blogs
-            </Link>
-          </h1>
-          <div>read more</div>
-        </div>
-      </BlogAnimation>
-
+    <SectionAnimation>
+      <H1Link href="/blog">Latest Blogs</H1Link>
       <div className="flex flex-col gap-y-6">
         {latestBlogs.map(blog => (
-          <BlogAnimation key={blog.slug}>
-            <BlogItem blog={blog} />
-          </BlogAnimation>
+          <BlogItem key={blog.slug} blog={blog} />
         ))}
       </div>
-    </section>
+    </SectionAnimation>
   )
 }
