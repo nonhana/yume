@@ -1,28 +1,34 @@
 'use client'
 
-import { badgeVariants } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
-import { Button } from '../ui/button'
 
 interface TagProps {
   tag: string
   current?: boolean
   count?: number
 }
+
 export function Tag({ tag, current, count }: TagProps) {
   const router = useRouter()
+
   return (
-    <Button
-      className={badgeVariants({
-        variant: current ? 'default' : 'secondary',
-        className: 'no-underline rounded-md',
-      })}
-      onClick={() => {
-        router.push(`/tags/${tag}`)
-      }}
+    <button
+      onClick={() => router.push(`/tags/${tag}`)}
+      className={cn(
+        'text-sm px-2 py-0.5 rounded transition-colors',
+        'hover:bg-neutral-100 dark:hover:bg-neutral-800',
+        'text-neutral-600 dark:text-neutral-400',
+        'hover:text-neutral-900 dark:hover:text-neutral-200',
+        current && 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-200',
+      )}
     >
       {tag}
-      {count ? `(${count})` : null}
-    </Button>
+      {count !== undefined && (
+        <span className="ml-1 text-neutral-400 dark:text-neutral-600">
+          {count}
+        </span>
+      )}
+    </button>
   )
 }

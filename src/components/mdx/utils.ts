@@ -33,7 +33,8 @@ export function getAllPosts(): Post[] {
   return getMDXData(fullPath)
 }
 
-export function getAllTags(posts: Post[]): Tags {
+export function getAllTags(): Tags {
+  const posts = getAllPosts()
   const tags: Tags = {}
   posts.forEach((post) => {
     if (post.metadata.published) {

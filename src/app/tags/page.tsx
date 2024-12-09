@@ -1,24 +1,30 @@
-import { getAllPosts, getAllTags, sortTagsByCount } from '@/components/mdx/utils'
-import { Tag } from '../../components/common/tag'
+import { Tag } from '@/components/common/tag'
+import { getAllTags } from '@/components/mdx/utils'
 
-const posts = getAllPosts()
-
-export default async function TagsPage() {
-  const tags = getAllTags(posts)
-  const sortedTags = sortTagsByCount(tags)
+export default function TagsPage() {
+  const tags = getAllTags()
 
   return (
-    <div className="container max-w-4xl py-6 lg:py-10">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="inline-block text-4xl font-black lg:text-5xl">Tags</h1>
+    <div className="min-h-screen pt-24">
+      <div className="container mx-auto px-4">
+        <div className="mb-8">
+          <h1 className="mb-4 text-3xl font-bold">Tags</h1>
+          <div className="text-sm text-neutral-600 dark:text-neutral-400">
+            {Object.keys(tags).length}
+            {' '}
+            tags in total
+          </div>
         </div>
-      </div>
-      <hr className="my-4" />
-      <div className="flex flex-wrap gap-2">
-        {sortedTags?.map(tag => (
-          <Tag tag={tag} count={tags[tag]} key={tag} />
-        ))}
+
+        <div className="max-w-2xl">
+          <div className="flex flex-wrap gap-3">
+            {Object.entries(tags)
+              .sort(([, a], [, b]) => b - a)
+              .map(([tag, count]) => (
+                <Tag key={tag} tag={tag} count={count} />
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   )

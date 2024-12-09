@@ -12,5 +12,4 @@ export interface IPostMetaData {
   tags?: string[]
   summary?: string
 }
-
 export type Tags = Record<string, number>
