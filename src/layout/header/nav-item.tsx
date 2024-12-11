@@ -21,7 +21,7 @@ export function NavItem({ children }: PropsWithChildren) {
           opacity: 1,
         })
       }}
-      className="relative z-10 px-5 py-3 text-white mix-blend-difference"
+      className="flex-center relative z-10 px-4 text-white mix-blend-difference"
     >
       {children}
     </div>

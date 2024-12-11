@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-type Header = 'hidden' | 'compact' | 'normal'
+export type Header = 'hidden' | 'compact' | 'normal'
 
 interface Position {
   left: number
@@ -15,3 +15,7 @@ export const positionAtom = atom<Position>({
   width: 0,
   opacity: 0,
 })
+
+export const isCompactAtom = atom(
+  get => get(headerAtom) === 'compact',
+)
