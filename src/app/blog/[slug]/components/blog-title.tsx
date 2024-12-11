@@ -1,4 +1,4 @@
-import type { IPostMetaData } from '@/components/mdx/utils'
+import type { IPostMetaData } from '@/types/post'
 
 export function BlogTitle({ metadata }: { metadata: IPostMetaData }) {
   return (

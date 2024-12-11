@@ -14,16 +14,3 @@ code[data-line-numbers] > [data-line]::before {
   text-align: right;
   color: gray;
 }
-
-/* anchor icon */
-.anchor {
-  @apply no-underline hover:text-sky-500 transition-colors duration-300 ease-in-out;
-}
-
-.anchor:hover .anchor-icon {
-  @apply opacity-100 transition-opacity duration-300 ease-in-out;
-}
-
-.anchor-icon {
-  @apply ml-2 opacity-0 text-[0.8em] align-middle;
-}

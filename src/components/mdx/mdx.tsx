@@ -11,12 +11,10 @@ const components = {
 
 export function CustomMDX(props: any) {
   return (
-    <>
-      <MDXRemote
-        {...props}
-        components={{ ...components, ...(props.components || {}) }}
-        options={OPTIONS}
-      />
-    </>
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+      options={OPTIONS}
+    />
   )
 }

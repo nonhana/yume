@@ -1,4 +1,3 @@
-import { transformerCopyButton } from '@rehype-pretty/transformers'
 import rehypeAutoLinkHeadings, { type Options as RehypeAutoLinkHeadingsOptions } from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypePrettyCode, { type Options as RehypePrettyCodeOptions } from 'rehype-pretty-code'
@@ -9,10 +8,10 @@ import remarkMath from 'remark-math'
 const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
   theme: 'ayu-dark',
   transformers: [
-    transformerCopyButton({
-      visibility: 'always',
-      feedbackDuration: 3_000,
-    }),
+    // transformerCopyButton({
+    //   visibility: 'always',
+    //   feedbackDuration: 3_000,
+    // }),
   ],
 }
 
