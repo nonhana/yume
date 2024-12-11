@@ -1,4 +1,3 @@
-import rehypeAutoLinkHeadings, { type Options as RehypeAutoLinkHeadingsOptions } from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypePrettyCode, { type Options as RehypePrettyCodeOptions } from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
@@ -15,22 +14,22 @@ const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
   ],
 }
 
-const rehypeAutoLinkHeadingsOptions: RehypeAutoLinkHeadingsOptions = {
-  behavior: 'wrap',
-  properties: {
-    className: ['anchor'],
-    ariaHidden: true,
-    tabIndex: -1,
-  },
-  content: {
-    type: 'element',
-    tagName: 'span',
-    properties: {
-      className: ['anchor-icon'],
-    },
-    children: [{ type: 'text', value: '→' }],
-  },
-}
+// const rehypeAutoLinkHeadingsOptions: RehypeAutoLinkHeadingsOptions = {
+//   behavior: 'wrap',
+//   properties: {
+//     className: ['anchor'],
+//     ariaHidden: true,
+//     tabIndex: -1,
+//   },
+//   content: {
+//     type: 'element',
+//     tagName: 'span',
+//     properties: {
+//       className: ['anchor-icon'],
+//     },
+//     children: [{ type: 'text', value: '→' }],
+//   },
+// }
 
 export const OPTIONS = { mdxOptions: {
   remarkPlugins: [
@@ -40,7 +39,7 @@ export const OPTIONS = { mdxOptions: {
   rehypePlugins: [
     [rehypePrettyCode, rehypePrettyCodeOptions],
     rehypeSlug,
-    [rehypeAutoLinkHeadings, rehypeAutoLinkHeadingsOptions],
+    // [rehypeAutoLinkHeadings, rehypeAutoLinkHeadingsOptions],
     rehypeKatex,
   ],
   format: 'mdx',
