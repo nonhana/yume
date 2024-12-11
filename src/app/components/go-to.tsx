@@ -14,11 +14,16 @@ export function GoTo({ href, children, icon }: GoToProps) {
   const containerVariants = {
     initial: {
       backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      y: 0,
     },
     hover: {
       backgroundColor: 'rgba(255, 255, 255, 0.2)',
       boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.2)',
-      transition: { duration: 0.2 },
+      y: -8,
+      transition: {
+        duration: 0.2,
+        ease: 'easeOut',
+      },
     },
   }
 
