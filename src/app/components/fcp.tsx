@@ -1,18 +1,17 @@
 'use client'
 
-import { SECTION_Y } from '@/constants/page-config'
+import { IMG_PADDING } from '@/constants/page-config'
 import { CenterImg } from './center-img'
-import { WhereToGo } from './where-to-go'
+import { Overlay } from './overlay'
 
 export function Fcp() {
   return (
     <div
-      className="relative w-full"
-      style={{ height: `calc(100vh + ${SECTION_Y}px)` }}
+      className="relative h-[150vh] w-full"
+      style={{ paddingLeft: IMG_PADDING, paddingRight: IMG_PADDING }}
     >
       <CenterImg />
-      <WhereToGo />
-      <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-black" />
+      <Overlay />
     </div>
   )
 }

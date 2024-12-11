@@ -10,7 +10,7 @@ export default function Home() {
       <main>
         <Fcp />
         <Normal>
-          <div className="absolute start-0 top-0 z-0 h-2/3 w-full opacity-25" style={{ backgroundImage: 'linear-gradient(#1b398e, transparent)' }}></div>
+          {/* <div className="absolute start-0 top-0 z-0 h-2/3 w-full opacity-25" style={{ backgroundImage: 'linear-gradient(#1b398e, transparent)' }}></div> */}
           <div className="relative z-10">
             <Blogs />
             <Friends />

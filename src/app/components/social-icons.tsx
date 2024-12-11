@@ -2,9 +2,7 @@
 
 import { Icons } from '@/components/icons/icon'
 import { siteConfig } from '@/config/site'
-import { SECTION_Y } from '@/constants/page-config'
-import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 interface Icon {
   name: keyof typeof siteConfig.links
@@ -39,22 +37,9 @@ const iconAnimation = {
 }
 
 export function SocialIcons() {
-  const [isVisible, setIsVisible] = useState(false)
-  const { scrollY } = useScroll()
-
-  const opacity = useTransform(
-    scrollY,
-    [0, SECTION_Y],
-    [0, 1],
-  )
-
-  useMotionValueEvent(opacity, 'change', (latest) => {
-    setIsVisible(latest > 0.2)
-  })
-
   return (
-    <motion.div style={{ opacity }}>
-      <div className="flex items-center justify-center space-x-4">
+    <motion.div>
+      <div className="flex-center space-x-4">
         {iconSet.map(({ name, Icon }) => {
           const link = siteConfig.links[name]
           if (!link)
@@ -66,11 +51,8 @@ export function SocialIcons() {
               target="_blank"
               rel="noreferrer"
               href={link}
-              className="flex size-10 items-center justify-center rounded-full bg-black/20 p-2 text-white backdrop-blur-md transition-colors hover:text-green-400"
+              className="flex-center size-10 rounded-full bg-black/5 p-2 text-white backdrop-blur-md transition-colors hover:text-green-400"
               {...iconAnimation}
-              style={{
-                pointerEvents: isVisible ? 'auto' : 'none',
-              }}
             >
               <Icon className="size-full" />
             </motion.a>

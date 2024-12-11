@@ -1,43 +1,35 @@
-import { OFFSET_Y, SECTION_Y } from '@/constants/page-config'
+import { IMG_PADDING } from '@/constants/page-config'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { IntroCard } from './intro-card'
+import { useRef } from 'react'
 
 export function CenterImg() {
-  const { scrollY } = useScroll()
+  const targetRef = useRef(null)
 
-  const filterOpacity = useTransform(
-    scrollY,
-    [SECTION_Y - OFFSET_Y, SECTION_Y + OFFSET_Y],
-    [0.25, 1],
-  )
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ['end end', 'end start'],
+  })
 
-  const cardOpacity = useTransform(
-    scrollY,
-    [SECTION_Y - OFFSET_Y, SECTION_Y + OFFSET_Y],
-    [1, 0],
-  )
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85])
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
-  const backgroundSize = useTransform(
-    scrollY,
-    [0, SECTION_Y],
-    ['140%', '100%'],
-  )
+  //   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+  //     console.log(latest)
+  //   })
 
   return (
-    <div className="sticky top-0 h-screen w-full">
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url("/imgs/bg.jpg")',
-          backgroundSize,
-        }}
-      >
-        <motion.div className="absolute inset-0 z-10 bg-black" style={{ opacity: filterOpacity }} />
-      </motion.div>
 
-      <motion.div className="flex-center relative z-20 h-full flex-col" style={{ opacity: cardOpacity }}>
-        <IntroCard />
-      </motion.div>
-    </div>
+    <motion.div
+      className="sticky inset-0 z-0 overflow-hidden rounded-3xl bg-cover bg-center"
+      ref={targetRef}
+      style={{
+        backgroundImage: 'url("/imgs/bg.jpg")',
+        scale,
+        height: `calc(100vh - ${IMG_PADDING * 2}px)`,
+        top: `${IMG_PADDING}px`,
+      }}
+    >
+      <motion.div className="absolute inset-0 bg-neutral-950/50" style={{ opacity }}></motion.div>
+    </motion.div>
   )
 }

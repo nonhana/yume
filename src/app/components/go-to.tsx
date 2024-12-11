@@ -1,5 +1,4 @@
 import { Icons } from '@/components/icons/icon'
-import { Card, CardContent } from '@/components/ui/card'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
@@ -12,22 +11,41 @@ interface GoToProps {
 export function GoTo({ href, children, icon }: GoToProps) {
   const Icon = Icons.Theme[icon]
 
+  const containerVariants = {
+    initial: {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+    hover: {
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.2)',
+      transition: { duration: 0.2 },
+    },
+  }
+
+  const iconVariants = {
+    hover: {
+      rotate: 360,
+      transition: { duration: 0.5 },
+    },
+  }
+
   return (
     <motion.div
-      whileHover={{
-        scale: 1.05,
-        transition: { duration: 0.2 },
-      }}
+      initial="initial"
+      whileHover="hover"
+      variants={containerVariants}
+      transition={{ duration: 0.5 }}
+      className="w-64 rounded-md text-white"
     >
-      <Link href={href}>
-        <Card className="w-64 border-none bg-white/10 backdrop-blur-sm">
-          <CardContent className="flex flex-col items-center justify-center gap-4 p-6">
-            <Icon className="size-8 text-white" />
-            <span className="text-lg font-medium text-white transition-colors hover:text-green-200">
-              {children}
-            </span>
-          </CardContent>
-        </Card>
+      <Link href={href} className="flex-center flex-col gap-2 p-6">
+        <motion.div variants={iconVariants}>
+          <Icon className="size-8" />
+        </motion.div>
+        <span
+          className="text-lg font-medium"
+        >
+          {children}
+        </span>
       </Link>
     </motion.div>
   )
