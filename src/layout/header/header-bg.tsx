@@ -7,13 +7,12 @@ export function HeaderBg() {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{
-          opacity: 0,
-        }}
+        initial={{ opacity: 0 }}
         animate={{
           ...position,
         }}
-        className="absolute inset-1 z-0 h-12 rounded-full bg-black"
+        exit={{ opacity: 0 }}
+        className="absolute inset-1 z-0 h-12 rounded-full bg-green-200"
       />
     </AnimatePresence>
   )

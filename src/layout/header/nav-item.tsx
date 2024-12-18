@@ -21,7 +21,13 @@ export function NavItem({ children }: PropsWithChildren) {
           opacity: 1,
         })
       }}
-      className="flex-center relative z-10 px-4 text-white mix-blend-difference"
+      onMouseLeave={() => {
+        setPosition(pv => ({
+          ...pv,
+          opacity: 0,
+        }))
+      }}
+      className="flex-center relative z-10 px-4 text-white mix-blend-difference transition-all duration-300 hover:scale-105"
     >
       {children}
     </div>

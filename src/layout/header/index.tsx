@@ -1,6 +1,7 @@
 'use client'
 
 import { headerAtom, type Header as HeaderState, positionAtom } from '@/atoms/header'
+import { IMG_PADDING } from '@/constants/page-config'
 import { cn } from '@/lib/utils'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { useAtom } from 'jotai'
@@ -18,14 +19,13 @@ function getHeaderState(latest: number, previous: number) {
   return latest > previous ? 'hidden' : 'compact'
 }
 
-function getHeaderStyles(state: HeaderState, isHomePage: boolean) {
+function getHeaderClass(state: HeaderState, isHomePage: boolean) {
   return cn(
-    'relative mx-auto flex',
+    'relative mx-auto flex h-14',
     {
-      'transition-all duration-300 rounded-full bg-white shadow-lg h-14 px-2': state === 'compact',
-      'px-5': state === 'normal',
-      'py-5': state === 'normal' && isHomePage,
-      'py-4 bg-white/80 backdrop-blur-sm': state === 'normal' && !isHomePage,
+      'rounded-full bg-white shadow-lg px-2': state === 'compact',
+      'px-5 py-4': state === 'normal',
+      'bg-white/80 backdrop-blur-sm': state === 'normal' && !isHomePage,
     },
   )
 }
@@ -35,7 +35,7 @@ export function Header() {
   const [_position, setPosition] = useAtom(positionAtom)
   const { scrollY } = useScroll()
   const pathname = usePathname()
-
+  const isHomePage = pathname === '/'
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0
     setHeader(getHeaderState(latest, previous))
@@ -69,10 +69,11 @@ export function Header() {
         transition={ANIMATION_CONFIG}
       >
         <motion.div
-          className={getHeaderStyles(header, pathname === '/')}
+          className={getHeaderClass(header, isHomePage)}
           layout
           transition={ANIMATION_CONFIG}
           style={{
+            marginTop: isHomePage && header === 'normal' ? IMG_PADDING * 2 : 0,
             width: header === 'normal' ? '100%' : 'fit-content',
             justifyContent: header === 'normal' ? 'space-between' : 'center',
           }}

@@ -19,3 +19,7 @@ export const positionAtom = atom<Position>({
 export const isCompactAtom = atom(
   get => get(headerAtom) === 'compact',
 )
+
+export const isNormalAtom = atom(
+  get => get(headerAtom) === 'normal',
+)
