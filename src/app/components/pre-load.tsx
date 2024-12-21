@@ -47,7 +47,7 @@ export function PreLoad({ children }: { children: React.ReactNode }) {
   return (
     <>
       <motion.div
-        className="bg-primary fixed inset-0 z-50 flex items-center justify-end"
+        className="bg-background fixed inset-0 z-50 flex items-center justify-end"
         initial={{ opacity: 1 }}
         animate={{
           opacity: 0,

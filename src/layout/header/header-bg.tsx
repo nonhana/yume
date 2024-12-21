@@ -12,7 +12,7 @@ export function HeaderBg() {
           ...position,
         }}
         exit={{ opacity: 0 }}
-        className="absolute inset-1 z-0 h-12 rounded-full bg-green-200"
+        className="h-13 bg-accent text-accent-foreground absolute inset-1 z-0 rounded-full"
       />
     </AnimatePresence>
   )

@@ -1,4 +1,6 @@
 import { getAllPosts, getAllTags } from '@/components/mdx/utils'
+import { Button } from '@/components/ui/button'
+import { Archive, ArrowRight } from 'lucide-react'
 import { BlogWall } from './components/blog-wall'
 import { Tags } from './components/tags'
 
@@ -7,20 +9,27 @@ export default async function BlogPage() {
   const tags = getAllTags()
 
   return (
-    <div className="min-h-screen pt-24">
+    <div className="bg-background min-h-screen pt-24">
       <div className="container mx-auto px-4">
         <div className="mb-8">
-          <h1 className="mb-4 text-3xl font-bold">Blog</h1>
-          <div className="flex items-center justify-between text-sm text-neutral-600 dark:text-neutral-400">
+          <h1 className="text-foreground mb-4 text-3xl font-bold">Blog</h1>
+          <div className="flex-between text-muted-foreground text-sm">
             <div>
               Page 1 -
               {posts.length}
               {' '}
               posts
             </div>
-            <a href="/archive" className="hover:text-neutral-900 dark:hover:text-neutral-200">
-              archive →
-            </a>
+            <Button className="group">
+              <Archive className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+              Archive
+              <ArrowRight
+                className="-me-1 ms-2 opacity-60 transition-transform group-hover:translate-x-0.5"
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+            </Button>
           </div>
         </div>
 

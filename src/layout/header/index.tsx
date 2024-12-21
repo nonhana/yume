@@ -21,11 +21,12 @@ function getHeaderState(latest: number, previous: number) {
 
 function getHeaderClass(state: HeaderState, isHomePage: boolean) {
   return cn(
-    'relative mx-auto flex h-14',
+    'relative mx-auto flex items-center h-14 bg-secondary text-secondary-foreground',
     {
-      'rounded-full bg-white shadow-lg px-2': state === 'compact',
-      'px-5 py-4': state === 'normal',
-      'bg-white/80 backdrop-blur-sm': state === 'normal' && !isHomePage,
+      'rounded-full shadow-lg px-2 border border-border': state === 'compact',
+      'px-5': state === 'normal',
+      'bg-transparent text-white/90 mix-blend-overlay': state === 'normal' && isHomePage,
+      'backdrop-blur-sm': state === 'normal' && !isHomePage,
     },
   )
 }

@@ -17,15 +17,15 @@ export function BlogCard({ post, className }: Props) {
     >
       <motion.div
         whileHover={{ scale: 1.05 }}
-        className="rounded-xl bg-white/5 p-6 backdrop-blur-sm transition-colors hover:bg-white/10"
+        className="rounded-xl p-6"
       >
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           <h2 className="mb-2 text-xl font-bold">{post.metadata.title}</h2>
-          <p className="mb-4 text-sm text-gray-400">{post.metadata.publishedAt}</p>
+          <p className="text- mb-4 text-sm">{post.metadata.publishedAt}</p>
           <p className="line-clamp-2 text-sm text-gray-300">{post.metadata.summary}</p>
 
           {post.metadata.tags && (

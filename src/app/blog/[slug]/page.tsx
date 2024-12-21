@@ -18,7 +18,7 @@ export default async function Page(
   }
 
   return (
-    <div className="grid grid-cols-[1fr_250px] gap-8">
+    <div className="bg-background grid grid-cols-[1fr_250px] gap-8">
       <div className="px-20 pt-16">
         <article className="prose dark:prose-invert">
           <BlogTitle metadata={post.metadata} />

@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { WhereToGo } from './where-to-go'
 
 export function Overlay() {
   const targetRef = useRef(null)
@@ -12,8 +11,6 @@ export function Overlay() {
 
   const y = useTransform(scrollYProgress, [0, 1], [250, -250])
   const opacity = useTransform(scrollYProgress, [0.25, 0.5, 0.75], [0, 1, 0])
-
-  const whereToGoOpacity = useTransform(scrollYProgress, [0.5, 0.75, 1], [0, 1, 0])
 
   return (
     <div>
@@ -30,11 +27,6 @@ export function Overlay() {
             a place to share your dreams
           </p>
         </div>
-      </motion.div>
-      <motion.div
-        style={{ y, opacity: whereToGoOpacity }}
-      >
-        <WhereToGo />
       </motion.div>
     </div>
   )
