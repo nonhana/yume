@@ -3,6 +3,7 @@
 import type { PropsWithChildren } from 'react'
 import { FontProvider } from './font-provider'
 import { LenisProvider } from './lenis-provider'
+import { SWRProvider } from './swr-provider'
 import { ThemeProvider } from './theme-provider'
 
 export function Providers({ children }: PropsWithChildren) {
@@ -15,7 +16,9 @@ export function Providers({ children }: PropsWithChildren) {
     >
       <LenisProvider>
         <FontProvider>
-          {children}
+          <SWRProvider>
+            {children}
+          </SWRProvider>
         </FontProvider>
       </LenisProvider>
     </ThemeProvider>

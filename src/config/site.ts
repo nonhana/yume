@@ -11,7 +11,6 @@ export const siteConfig = {
     neteaseCloudMusic: '',
     wechat: '',
   },
-  // TODO: add social banner
   socialBanner: '',
 }
 
