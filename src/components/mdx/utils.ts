@@ -1,4 +1,4 @@
-import type { IPostMetaData, Post, Tags } from '@/types/post'
+import type { IPostMetaData, ITag, Post } from '@/types/post'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -33,17 +33,22 @@ export function getAllPosts(): Post[] {
   return getMDXData(fullPath)
 }
 
-export function getAllTags(): Tags {
+export function getAllTags(): ITag[] {
   const posts = getAllPosts()
-  const tags: Tags = {}
+  const tags: ITag[] = []
   posts.forEach((post) => {
     if (post.metadata.published) {
       post.metadata.tags?.forEach((tag) => {
-        tags[tag] = (tags[tag] ?? 0) + 1
+        const existingTag = tags.find(t => t.name === tag)
+        if (existingTag) {
+          existingTag.count++
+        }
+        else {
+          tags.push({ name: tag, count: 1 })
+        }
       })
     }
   })
-
   return tags
 }
 
@@ -77,8 +82,8 @@ export function getBlogSlugs(): string[] {
     .map(post => post.slug)
 }
 
-export function sortTagsByCount(tags: Tags): string[] {
-  return Object.keys(tags).sort((a, b) => tags[b] - tags[a])
+export function sortTagsByCount(tags: ITag[]): string[] {
+  return tags.sort((a, b) => b.count - a.count).map(tag => tag.name)
 }
 
 export function getPostsByTagSlug(posts: Post[], tag: string): Post[] {

@@ -2,8 +2,7 @@ import { CustomMDX } from '@/components/mdx/mdx'
 import { TableOfContents } from '@/components/mdx/toc'
 import { getAllPosts } from '@/components/mdx/utils'
 import { notFound } from 'next/navigation'
-import { BlogTitle } from './components/blog-title'
-import { Tags } from './components/tags'
+import { BlogTitle } from '../../../components/common/blog-title'
 
 export default async function Page(
   props: {
@@ -24,7 +23,6 @@ export default async function Page(
           <BlogTitle metadata={post.metadata} />
 
           <div className="flex flex-col">
-            <Tags tags={post.metadata.tags || []} />
           </div>
           <CustomMDX source={post.content} />
         </article>

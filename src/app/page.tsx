@@ -4,8 +4,9 @@ import { Friends } from './components/friends'
 
 export default function Home() {
   return (
-    <div className="bg-background text-foreground relative">
+    <div className="relative">
       <main>
+        {/* <DynamicBg /> */}
         <Fcp />
         <Blogs />
         <Friends />

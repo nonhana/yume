@@ -61,9 +61,20 @@ const shadcnConfig: Partial<Config> = {
   },
 }
 
+// :{}可以应用上对应的class
+const shadcnApply = {
+  '*': {
+    '@apply border-border': {},
+  },
+  'body': {
+    '@apply bg-background text-foreground': {},
+  },
+}
+
 export const shadcnPlugin = plugin(
   ({ addBase }) => {
     addBase(shadcnCssVariable)
+    addBase(shadcnApply)
   },
   shadcnConfig,
 )

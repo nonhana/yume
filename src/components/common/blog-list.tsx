@@ -1,7 +1,7 @@
 import type { Post } from '@/types/post'
 import { BlogCard } from './blog-card'
 
-export function BlogWall({ posts }: { posts: Post[] }) {
+export function BlogList({ posts }: { posts: Post[] }) {
   return (
     <div className="space-y-6">
       {posts.map(post => (

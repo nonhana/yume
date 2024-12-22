@@ -26,6 +26,9 @@ const config: Config = {
       comic: ['var(--font-comic)', 'sans'],
     },
     extend: {
+      colors: {
+        lsc: 'hsl(224, 68%, 33%)',
+      },
       /* 需要定制最大宽度,prose会有约束 */
       typography: {
         DEFAULT: {

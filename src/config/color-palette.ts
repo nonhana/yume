@@ -16,7 +16,7 @@ export const COLORS = {
   },
 
   blue: {
-    light: 'hsl(208, 100%, 90%)',
+    light: 'hsl(201, 100%, 94%)',
     dark: 'hsl(199, 89%, 48%)',
     lsc: 'hsl(224, 68%, 33%)',
   },

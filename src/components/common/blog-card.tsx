@@ -3,6 +3,7 @@
 import type { Post } from '@/types/post'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { BlogTags } from './blog-tags'
 
 interface Props {
   post: Post
@@ -25,21 +26,10 @@ export function BlogCard({ post, className }: Props) {
           transition={{ duration: 0.3 }}
         >
           <h2 className="mb-2 text-xl font-bold">{post.metadata.title}</h2>
-          <p className="text- mb-4 text-sm">{post.metadata.publishedAt}</p>
-          <p className="line-clamp-2 text-sm text-gray-300">{post.metadata.summary}</p>
+          <p className="text-muted-foreground mb-4 text-sm">{post.metadata.publishedAt}</p>
+          <p className="text-muted-foreground mb-2 line-clamp-2 text-sm">{post.metadata.summary}</p>
 
-          {post.metadata.tags && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {post.metadata.tags.map(tag => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-white/10 px-3 py-1 text-xs"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          <BlogTags tags={post.metadata.tags} />
         </motion.div>
       </motion.div>
     </Link>
