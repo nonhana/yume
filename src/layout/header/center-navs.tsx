@@ -26,7 +26,7 @@ export function CenterNavs() {
         navs.map(nav => (
           <NavItem key={nav.href}>
             <Link href={nav.href} title={nav.name}>
-              <nav.icon size={20} />
+              <nav.icon className="size-5" />
             </Link>
           </NavItem>
         ))

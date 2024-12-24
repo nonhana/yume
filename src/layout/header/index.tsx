@@ -1,6 +1,6 @@
 'use client'
 
-import { headerAtom, type Header as HeaderState, positionAtom } from '@/atoms/header'
+import { headerAtom, positionAtom } from '@/atoms/header'
 import { IMG_PADDING } from '@/constants/page-config'
 import { cn } from '@/lib/utils'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
@@ -19,24 +19,13 @@ function getHeaderState(latest: number, previous: number) {
   return latest > previous ? 'hidden' : 'compact'
 }
 
-function getHeaderClass(state: HeaderState, isHomePage: boolean) {
-  return cn(
-    'relative mx-auto flex items-center h-14 bg-secondary text-secondary-foreground',
-    {
-      'rounded-full shadow-lg px-2 border border-border': state === 'compact',
-      'px-5': state === 'normal',
-      'bg-transparent text-white/90 mix-blend-overlay': state === 'normal' && isHomePage,
-      'backdrop-blur-sm': state === 'normal' && !isHomePage,
-    },
-  )
-}
-
 export function Header() {
   const [header, setHeader] = useAtom(headerAtom)
   const [_position, setPosition] = useAtom(positionAtom)
   const { scrollY } = useScroll()
   const pathname = usePathname()
   const isHomePage = pathname === '/'
+
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0
     setHeader(getHeaderState(latest, previous))
@@ -70,7 +59,15 @@ export function Header() {
         transition={ANIMATION_CONFIG}
       >
         <motion.div
-          className={getHeaderClass(header, isHomePage)}
+          className={cn(
+            'relative mx-auto flex items-center h-14 bg-secondary text-secondary-foreground',
+            {
+              'rounded-full shadow-lg px-2 border': header === 'compact',
+              'px-5': header === 'normal',
+              'bg-transparent text-white/90 mix-blend-overlay': header === 'normal' && isHomePage,
+              'backdrop-blur-sm': header === 'normal' && !isHomePage,
+            },
+          )}
           layout
           transition={ANIMATION_CONFIG}
           style={{

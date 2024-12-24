@@ -1,6 +1,7 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
+import { zhCN } from '@clerk/localizations'
 import { ClerkProvider } from '@clerk/nextjs'
 import { FontProvider } from './font-provider'
 import { LenisProvider } from './lenis-provider'
@@ -18,7 +19,7 @@ export function Providers({ children }: PropsWithChildren) {
       <LenisProvider>
         <FontProvider>
           <SWRProvider>
-            <ClerkProvider>
+            <ClerkProvider localization={zhCN}>
               {children}
             </ClerkProvider>
           </SWRProvider>

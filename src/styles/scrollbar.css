@@ -7,3 +7,50 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+/* :root {
+  overflow: overlay;
+} */
+
+/*
+解决滚动条隐藏后页面抖动的问题
+clerk弹出modal时会给body加上15px的右边距以防止页面抖动
+但是header是fixed定位，并不会受到body的padding影响
+
+overflow: overlay 属性已被废弃
+
+以下两种方式都可以实现
+*/
+
+/*
+方法1:
+    滚动条在 html 层级显示，始终占据空间
+    body 使用 absolute 定位，宽度固定为视口宽度
+    页面实际滚动发生在 html 元素上
+    fixed 元素相对于视口定位，不受影响
+
+    reference:
+    https://www.zhangxinxu.com/wordpress/2015/01/css-page-scrollbar-toggle-center-no-jumping/
+*/
+
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root body {
+  position: absolute;
+}
+
+body {
+  width: 100vw;
+  overflow: hidden;
+}
+
+/*
+    方法2: scrollbar-gutter
+*/
+
+/* :root {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+} */

@@ -7,7 +7,9 @@ export const LenisProvider: FC<PropsWithChildren> = ({ children }) => {
       root
       options={{
         gestureOrientation: 'both', // 允许both方向的手势
-        orientation: 'vertical', // 只控制垂直方向
+        prevent(node) {
+          return !node.closest('.lenis-prevent')
+        },
       }}
     >
       {children}

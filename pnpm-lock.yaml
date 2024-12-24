@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@clerk/localizations':
+        specifier: ^3.9.5
+        version: 3.9.5
       '@clerk/nextjs':
         specifier: ^6.9.6
         version: 6.9.6(next@15.0.1-canary.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
@@ -286,6 +289,10 @@ packages:
     peerDependencies:
       react: ^18.0.0 || ^19.0.0 || ^19.0.0-0
       react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-0
+
+  '@clerk/localizations@3.9.5':
+    resolution: {integrity: sha512-b0/NEVbk6AT6XMgIJYszuvx7kH+7jk+wnzcD4WD85CMvpTJdSeYUPV3uqw0HGr3O4wPeDz8NbRWnX/Esydo6yA==}
+    engines: {node: '>=18.17.0'}
 
   '@clerk/nextjs@6.9.6':
     resolution: {integrity: sha512-wmbQd2UYOnvGtidgEAqD6f2JZjvKMlmZqnT2HbR3GKwiGme3c1wLrkPye5tknaFLJHsA+Zfp7MJtL7mu07yCzw==}
@@ -3685,6 +3692,10 @@ snapshots:
       react: 19.0.0-rc-69d4b800-20241021
       react-dom: 19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021)
       tslib: 2.4.1
+
+  '@clerk/localizations@3.9.5':
+    dependencies:
+      '@clerk/types': 4.40.0
 
   '@clerk/nextjs@6.9.6(next@15.0.1-canary.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)':
     dependencies:
