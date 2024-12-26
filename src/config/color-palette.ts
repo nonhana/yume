@@ -1,7 +1,7 @@
 export const COLORS = {
 
   // 略暖的白色
-  white: 'hsl(45, 100%, 99%)',
+  white: 'hsl(0, 100%, 100%)',
   // 降低对比，实际上是深灰
   black: 'hsl(0, 2%, 11%)',
 
@@ -37,7 +37,7 @@ const shadcnCssVariableHsl = {
   ':root': {
     '--background': COLORS.white,
     '--foreground': COLORS.black,
-    '--card': COLORS.white,
+    '--card': COLORS.gray[200],
     '--card-foreground': COLORS.black,
     '--popover': COLORS.white,
     '--popover-foreground': COLORS.black,

@@ -1,5 +1,5 @@
-import { BlogList } from '@/components/common/blog-list'
 import { getAllPosts, getPostsByTagSlug } from '@/components/mdx/utils'
+import { BlogList } from '@/components/module/blog/blog-list'
 import { notFound } from 'next/navigation'
 
 export default async function Page(props: { params: Promise<{ slug: string }> }) {

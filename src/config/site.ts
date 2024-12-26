@@ -4,14 +4,11 @@ export const siteConfig = {
   description: 'bittersweet life',
   author: 'sayoriqwq',
   links: {
-    qq: '',
     github: 'https://github.com/qianmengqwq',
     twitter: 'https://sayoriqwq.site',
-    bilibili: '',
-    neteaseCloudMusic: '',
-    wechat: '',
+    email: 'mailto:2531600563@qq.com',
   },
-  socialBanner: '',
+  rss: '/feed.xml',
 }
 
 export type SiteConfig = typeof siteConfig

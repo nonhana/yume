@@ -1,1 +1,25 @@
-@import 'lenis/dist/lenis.css';
+/* 设置基础高度 */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* 禁用原生平滑滚动 */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* 防止特定元素滚动传播 */
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* 停止滚动时禁止溢出 */
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* 禁用 iframe 的指针事件 */
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

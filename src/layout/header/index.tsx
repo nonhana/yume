@@ -1,79 +1,48 @@
 'use client'
 
+import { clerkModalAtom } from '@/atoms/clerk'
 import { headerAtom, positionAtom } from '@/atoms/header'
-import { IMG_PADDING } from '@/constants/page-config'
-import { cn } from '@/lib/utils'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { useAtom } from 'jotai'
-import { usePathname } from 'next/navigation'
 import { HeaderBg } from './header-bg'
 import { Navs } from './navs'
-
-const ANIMATION_CONFIG = {
-  duration: 0.3,
-}
-
-function getHeaderState(latest: number, previous: number) {
-  if (latest < 100)
-    return 'normal'
-  return latest > previous ? 'hidden' : 'compact'
-}
 
 export function Header() {
   const [header, setHeader] = useAtom(headerAtom)
   const [_position, setPosition] = useAtom(positionAtom)
+  const [isModalOpen] = useAtom(clerkModalAtom)
   const { scrollY } = useScroll()
-  const pathname = usePathname()
-  const isHomePage = pathname === '/'
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0
-    setHeader(getHeaderState(latest, previous))
+    setHeader(latest - previous < 0)
   })
-
-  if (header === 'hidden') {
-    return (
-      <AnimatePresence mode="wait">
-        <motion.header
-          key="hidden"
-          className="fixed inset-x-0 top-0 z-50 mx-auto"
-          initial={{ y: 0 }}
-          animate={{ y: '-100%' }}
-          exit={{ y: '-100%' }}
-          transition={ANIMATION_CONFIG}
-        />
-      </AnimatePresence>
-    )
-  }
 
   return (
     <AnimatePresence mode="wait">
-      <motion.header
-        key="visible"
-        className="fixed inset-x-0 top-0 z-50 mx-auto"
-        initial={{ y: '-100%' }}
-        animate={{
-          y: header === 'normal' ? 0 : 32,
+      <header
+        className="fixed inset-1 top-0 z-50 h-14"
+        style={{
+          paddingRight: isModalOpen ? 15 : 0,
         }}
-        exit={{ y: '-100%' }}
-        transition={ANIMATION_CONFIG}
       >
         <motion.div
-          className={cn(
-            'relative mx-auto flex items-center h-14 bg-secondary text-secondary-foreground',
-            {
-              'rounded-full shadow-lg px-2 border': header === 'compact',
-              'px-5': header === 'normal',
-              'bg-transparent text-white/90 mix-blend-overlay': header === 'normal' && isHomePage,
-              'backdrop-blur-sm': header === 'normal' && !isHomePage,
-            },
-          )}
-          layout
-          transition={ANIMATION_CONFIG}
-          style={{
-            marginTop: isHomePage && header === 'normal' ? IMG_PADDING * 2 : 0,
-            width: header === 'normal' ? '100%' : 'fit-content',
-            justifyContent: header === 'normal' ? 'space-between' : 'center',
+          className="bg-secondary text-secondary-foreground relative mx-auto flex h-14 w-fit items-center rounded-full border px-2 shadow-lg"
+          initial={{
+            y: 32,
+            opacity: 1,
+          }}
+          animate={{
+            y: header ? 32 : '-105%',
+            opacity: header ? 1 : 0,
+          }}
+          exit={{
+            y: '-105%',
+            opacity: 0,
+          }}
+          transition={{
+            type: 'tween',
+            duration: 0.3,
           }}
           onMouseLeave={() => {
             setPosition(pv => ({
@@ -85,7 +54,7 @@ export function Header() {
           <Navs />
           <HeaderBg />
         </motion.div>
-      </motion.header>
+      </header>
     </AnimatePresence>
   )
 }

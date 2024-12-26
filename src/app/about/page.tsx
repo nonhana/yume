@@ -1,7 +1,7 @@
 export default function Page() {
   return (
-    <>
-      about me
-    </>
+    <div>
+      <p>这是一个关于页面</p>
+    </div>
   )
 }

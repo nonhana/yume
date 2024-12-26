@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
+import { shadcnCssVariable } from '../config/color-palette'
 
-import { shadcnCssVariable } from '../../src/config/color-palette'
 /*
     shadcn的bg-background/90语法依赖于hsl转换
     因此必须这样配置

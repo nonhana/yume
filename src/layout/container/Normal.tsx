@@ -1,7 +1,8 @@
-export function Normal({ children }: { children: React.ReactNode }) {
+import type { PropsWithCC } from '@/types'
+import { cn } from '@/lib/utils'
+
+export function Normal({ children, className }: PropsWithCC) {
   return (
-    <div className="relative">
-      <div className="container mx-auto max-w-5xl px-4 py-20">{children}</div>
-    </div>
+    <div className={cn('container max-w-5xl px-10 py-20 mx-auto', className)}>{children}</div>
   )
 }

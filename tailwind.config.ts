@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 import typography from '@tailwindcss/typography'
 /*
     不能使用路径别名，tailwind.config.ts 是在项目构建开始之前就被加载的
@@ -23,7 +24,6 @@ const config: Config = {
     fontFamily: {
       sans: ['var(--font-sans)'],
       serif: ['var(--font-serif)', 'serif'],
-      comic: ['var(--font-comic)', 'sans'],
     },
     extend: {
       colors: {
@@ -39,7 +39,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [typography],
+  plugins: [
+    iconsPlugin({
+      collections: {
+        ...getIconCollections(['mingcute']),
+      },
+    }),
+    typography,
+
+  ],
 }
 
 export default config

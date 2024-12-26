@@ -7,6 +7,7 @@ export interface Post {
 export interface IPostMetaData {
   title: string
   category: string
+  cover: string
   publishedAt: string
   published?: boolean
   tags?: string[]

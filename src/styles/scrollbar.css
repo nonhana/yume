@@ -7,9 +7,6 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-/* :root {
-  overflow: overlay;
-} */
 
 /*
 解决滚动条隐藏后页面抖动的问题
@@ -32,7 +29,7 @@ overflow: overlay 属性已被废弃
     https://www.zhangxinxu.com/wordpress/2015/01/css-page-scrollbar-toggle-center-no-jumping/
 */
 
-:root {
+/* :root {
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -44,13 +41,13 @@ overflow: overlay 属性已被废弃
 body {
   width: 100vw;
   overflow: hidden;
-}
+} */
 
 /*
     方法2: scrollbar-gutter
 */
 
 /* :root {
-  overflow-y: auto;
+  overflow: auto;
   scrollbar-gutter: stable;
 } */

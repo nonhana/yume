@@ -1,20 +1,21 @@
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { BookOpen, Info, Users } from 'lucide-react'
 import Link from 'next/link'
 import { NavItem } from './nav-item'
 
 const navs = [
   {
-    name: 'Blog',
+    name: '博客',
     href: '/blog',
     icon: BookOpen,
   },
   {
-    name: 'Friend',
+    name: '朋友',
     href: '/friend',
     icon: Users,
   },
   {
-    name: 'About',
+    name: '关于',
     href: '/about',
     icon: Info,
   },
@@ -25,9 +26,18 @@ export function CenterNavs() {
       {
         navs.map(nav => (
           <NavItem key={nav.href}>
-            <Link href={nav.href} title={nav.name}>
-              <nav.icon className="size-5" />
-            </Link>
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link href={nav.href} title={nav.name} className="flex items-center gap-2">
+                    <nav.icon className="size-5" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" sideOffset={4}>
+                  {nav.name}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </NavItem>
         ))
       }

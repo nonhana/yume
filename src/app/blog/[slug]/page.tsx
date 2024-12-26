@@ -1,8 +1,8 @@
 import { CustomMDX } from '@/components/mdx/mdx'
-import { TableOfContents } from '@/components/mdx/toc'
 import { getAllPosts } from '@/components/mdx/utils'
+import { BlogMetadata } from '@/components/module/blog/blog-metadata'
+import { TableOfContents } from '@/components/toc/toc'
 import { notFound } from 'next/navigation'
-import { BlogTitle } from '../../../components/common/blog-title'
 
 export default async function Page(
   props: {
@@ -17,20 +17,14 @@ export default async function Page(
   }
 
   return (
-    <div className="bg-background grid grid-cols-[1fr_250px] gap-8">
-      <div className="px-20 pt-16">
-        <article className="prose dark:prose-invert">
-          <BlogTitle metadata={post.metadata} />
-
-          <div className="flex flex-col">
-          </div>
-          <CustomMDX source={post.content} />
-        </article>
-      </div>
-
-      <div className="px-4 pt-16">
-        <TableOfContents />
-      </div>
+    <div className="bg-background grid grid-cols-[1fr_250px] gap-10">
+      <article className="prose dark:prose-invert">
+        <BlogMetadata metadata={post.metadata} />
+        <div className="flex flex-col">
+        </div>
+        <CustomMDX source={post.content} />
+      </article>
+      <TableOfContents />
     </div>
   )
 }

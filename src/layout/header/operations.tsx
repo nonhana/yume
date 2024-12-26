@@ -1,5 +1,5 @@
 import { ClerkSign } from '@/components/common/clerk-sign'
-import { ModeToggle } from '@/components/common/mode-toggle'
+import { ModeToggle } from '@/components/common/operations/mode-toggle'
 import { NavItem } from './nav-item'
 
 export function Operations() {
