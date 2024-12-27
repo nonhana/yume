@@ -2,10 +2,12 @@ import antfu from '@antfu/eslint-config'
 import tailwind from 'eslint-plugin-tailwindcss'
 
 export default antfu(
-  { formatters: {
-    css: true,
-    markdown: 'prettier',
-  } },
+  {
+    formatters: {
+      css: true,
+      markdown: 'prettier',
+    },
+  },
   ...tailwind.configs['flat/recommended'],
   {
     settings: {
