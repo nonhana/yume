@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     return config
   },
   transpilePackages: ['next-mdx-remote'],
+  images: {
+    remotePatterns: [{ hostname: 'img.clerk.com' }],
+  },
 }
 
 export default withBundleAnalyzer(nextConfig)

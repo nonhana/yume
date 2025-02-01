@@ -1,44 +1,58 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { BookOpen, Info, Users } from 'lucide-react'
+import { headerSelectedAtom, type HeaderTabs } from '@/atoms/header'
+import { cn } from '@/lib/utils'
+import { useAtom } from 'jotai'
+import { BookText, Link2, LoaderCircle, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
-import { NavItem } from './nav-item'
 
 const navs = [
   {
     name: '博客',
-    href: '/blog',
-    icon: BookOpen,
+    href: '/posts',
+    icon: BookText,
   },
   {
     name: '朋友',
     href: '/friend',
-    icon: Users,
+    icon: Link2,
   },
   {
     name: '关于',
     href: '/about',
-    icon: Info,
+    icon: LoaderCircle,
+  },
+  {
+    name: '留言',
+    href: '/message',
+    icon: MessageCircle,
   },
 ]
+
 export function CenterNavs() {
+  const [selected, setSelected] = useAtom(headerSelectedAtom)
   return (
     <div className="flex">
       {
         navs.map(nav => (
-          <NavItem key={nav.href}>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link href={nav.href} title={nav.name} className="flex items-center gap-2">
-                    <nav.icon className="size-5" />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side="bottom" sideOffset={4}>
-                  {nav.name}
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </NavItem>
+          <Link
+            href={nav.href}
+            className={cn(
+              'relative rounded-md px-2 py-1 flex-center gap-2',
+              'hover:text-green-400 transition-colors',
+              'transition-all duration-300 ease-in-out',
+              selected === nav.href && 'text-green-400 px-4',
+            )}
+            key={nav.href}
+            onClick={() => setSelected(nav.href as HeaderTabs)}
+          >
+            <div className={cn(
+              'w-0 scale-0 transition-all duration-300 ease-in-out opacity-0',
+              selected === nav.href && 'w-4 scale-100 opacity-100',
+            )}
+            >
+              <nav.icon className="size-4" />
+            </div>
+            <span className="relative z-10">{nav.name}</span>
+          </Link>
         ))
       }
     </div>

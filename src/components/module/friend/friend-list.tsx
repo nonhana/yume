@@ -3,12 +3,17 @@ import { FriendCard } from './friend-card'
 
 export function FriendList() {
   return (
-    <div className="grid grid-cols-2 gap-y-10 px-20">
-      {
-        friends.map((friend, index) => (
-          <FriendCard key={index} friend={friend} />
-        ))
-      }
+    <div className="flex flex-col gap-8">
+      <p className="text-2xl font-bold">
+        朋友们
+      </p>
+      <div className="grid grid-cols-1 gap-x-4 gap-y-10 px-20 md:grid-cols-2">
+        {
+          friends.map((friend, index) => (
+            <FriendCard key={index} friend={friend} />
+          ))
+        }
+      </div>
     </div>
   )
 }

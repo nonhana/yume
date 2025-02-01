@@ -14,7 +14,6 @@ export function Providers({ children }: PropsWithChildren) {
       attribute="class"
       defaultTheme="system"
       enableSystem
-      disableTransitionOnChange
     >
       <LenisProvider>
         <FontProvider>

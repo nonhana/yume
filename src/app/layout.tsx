@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner'
 import { Footer } from '@/layout/footer'
 import { Header } from '@/layout/header'
 import { Providers } from '@/providers/providers'
@@ -16,6 +17,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </Providers>
+        <Toaster position="top-right" />
       </body>
     </html>
   )

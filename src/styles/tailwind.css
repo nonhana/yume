@@ -17,7 +17,7 @@
   .text-balance {
     text-wrap: balance;
   }
-  .relative-time {
+  .time {
     white-space: nowrap;
   }
 }

@@ -50,3 +50,18 @@ model Tag {
   count        Int       @default(0)
   articles     Article[] @relation("ArticleTags")
 }
+
+model Message {
+  id        Int   @id @default(autoincrement())
+  message   String
+
+  createdAt DateTime @default(now())
+  userId    String
+  userName  String
+  userImg   String
+}
+
+model Subscriber {
+  id              Int     @id @default(autoincrement())
+  email           String  @unique
+}

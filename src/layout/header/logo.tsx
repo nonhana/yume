@@ -1,14 +1,16 @@
+import { headerSelectedAtom } from '@/atoms/header'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
-import { NavItem } from './nav-item'
 
 export function Logo() {
+  const [_selected, setSelected] = useAtom(headerSelectedAtom)
   return (
-    <NavItem>
-      <Link href="/">
-        <span className="text-xl font-bold">
-          yume
-        </span>
-      </Link>
-    </NavItem>
+    <Link
+      href="/"
+      className="font-aboreto text-xl font-bold transition-colors hover:text-green-400"
+      onClick={() => setSelected('/')}
+    >
+      yume
+    </Link>
   )
 }

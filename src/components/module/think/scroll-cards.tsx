@@ -9,7 +9,7 @@ export function ScrollCards() {
 
   return (
     <div className="relative mx-auto h-[300vh] w-full">
-      <div ref={containerRef} className="sticky top-0 h-screen w-full overflow-hidden bg-blue-100">
+      <div ref={containerRef} className="sticky top-0 h-screen w-full overflow-hidden">
         {posts.map((post, index) => (
           <ScrollCard
             key={post.title}

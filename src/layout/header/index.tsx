@@ -1,15 +1,25 @@
 'use client'
 
+/*
+
+spotlight code by Innei
+
+reference: https://github.com/Innei/Shiro/blob/8481a63718c4aee2a850e4ebd1148ee5b2d62bce/src/components/layout/header/internal/HeaderContent.tsx
+
+*/
+
 import { clerkModalAtom } from '@/atoms/clerk'
-import { headerAtom, positionAtom } from '@/atoms/header'
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { headerAtom } from '@/atoms/header'
+import { cn } from '@/lib/utils'
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll } from 'framer-motion'
 import { useAtom } from 'jotai'
-import { HeaderBg } from './header-bg'
-import { Navs } from './navs'
+import { useCallback } from 'react'
+import { CenterNavs } from './center-navs'
+import { Logo } from './logo'
+import { Operations } from './operations'
 
 export function Header() {
   const [header, setHeader] = useAtom(headerAtom)
-  const [_position, setPosition] = useAtom(positionAtom)
   const [isModalOpen] = useAtom(clerkModalAtom)
   const { scrollY } = useScroll()
 
@@ -17,6 +27,22 @@ export function Header() {
     const previous = scrollY.getPrevious() ?? 0
     setHeader(latest - previous < 0)
   })
+
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const radius = useMotionValue(0)
+
+  const handleMouseMove = useCallback(
+    ({ clientX, clientY, currentTarget }: React.MouseEvent) => {
+      const bounds = currentTarget.getBoundingClientRect()
+      mouseX.set(clientX - bounds.left)
+      mouseY.set(clientY - bounds.top)
+      radius.set(Math.hypot(bounds.width, bounds.height) / 2.5)
+    },
+    [mouseX, mouseY, radius],
+  )
+
+  const background = useMotionTemplate`radial-gradient(${radius}px circle at ${mouseX}px ${mouseY}px, var(--spotlight-color) 0%, transparent 65%)`
 
   return (
     <AnimatePresence mode="wait">
@@ -27,7 +53,17 @@ export function Header() {
         }}
       >
         <motion.div
-          className="bg-secondary text-secondary-foreground relative mx-auto flex h-14 w-fit items-center rounded-full border px-2 shadow-lg"
+          className={
+            cn(
+              'relative',
+              'bg-secondary/90 text-secondary-foreground',
+              'mx-auto flex h-14 w-fit items-center',
+              'rounded-full border px-2 shadow-lg',
+              'group',
+              'pointer-events-auto',
+            )
+          }
+          onMouseMove={handleMouseMove}
           initial={{
             y: 32,
             opacity: 1,
@@ -44,15 +80,16 @@ export function Header() {
             type: 'tween',
             duration: 0.3,
           }}
-          onMouseLeave={() => {
-            setPosition(pv => ({
-              ...pv,
-              opacity: 0,
-            }))
-          }}
         >
-          <Navs />
-          <HeaderBg />
+          <motion.div
+            className="pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{ background }}
+          />
+          <div className="flex items-center gap-4 px-4">
+            <Logo />
+            <CenterNavs />
+            <Operations />
+          </div>
         </motion.div>
       </header>
     </AnimatePresence>

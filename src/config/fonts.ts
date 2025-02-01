@@ -1,9 +1,16 @@
-import { Noto_Serif_SC } from 'next/font/google'
-import localFont from 'next/font/local'
+import { Aboreto, Noto_Serif_SC, Rubik } from 'next/font/google'
 
-const sansFont = localFont({
-  src: '../../public/fonts/SNPro-VariableRegular.ttf',
+const sansFont = Rubik({
+  subsets: ['latin'],
+  weight: ['400'],
   variable: '--font-sans',
+  display: 'swap',
+})
+
+const aboretoFont = Aboreto({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-aboreto',
   display: 'swap',
 })
 
@@ -14,4 +21,4 @@ const serifFont = Noto_Serif_SC({
   display: 'swap',
 })
 
-export { sansFont, serifFont }
+export { aboretoFont, sansFont, serifFont }

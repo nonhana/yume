@@ -1,4 +1,4 @@
-import type { IPostMetaData, ITag, Post } from '@/types/post'
+import type { IPostMetaData, Post } from '@/types/post'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -33,40 +33,8 @@ export function getAllPosts(): Post[] {
   return getMDXData(fullPath)
 }
 
-export function getAllTags(): ITag[] {
+export function getLatestPosts(num: number = 4): Post[] {
   const posts = getAllPosts()
-  const tags: ITag[] = []
-  posts.forEach((post) => {
-    if (post.metadata.published) {
-      post.metadata.tags?.forEach((tag) => {
-        const existingTag = tags.find(t => t.name === tag)
-        if (existingTag) {
-          existingTag.count++
-        }
-        else {
-          tags.push({ name: tag, count: 1 })
-        }
-      })
-    }
-  })
-  return tags
-}
-
-function getCategoryPosts(category: string): Post[] {
-  switch (category) {
-    case 'blog':
-      return getAllPosts().filter(post => post.metadata.category === 'blog')
-    case 'think':
-      return getAllPosts().filter(post => post.metadata.category === 'think')
-    default:
-      return getAllPosts()
-  }
-}
-
-const DEFAULT_POSTS_PER_PAGE = 5
-
-export function getLatestPosts(category: string, num: number = DEFAULT_POSTS_PER_PAGE): Post[] {
-  const posts = getCategoryPosts(category)
   const sortPosts = (posts: Post[]) =>
     posts.sort((a, b) => {
       const dateA = new Date(a.metadata.publishedAt)
@@ -74,20 +42,4 @@ export function getLatestPosts(category: string, num: number = DEFAULT_POSTS_PER
       return dateA > dateB ? -1 : dateA < dateB ? 1 : 0
     })
   return sortPosts(posts).slice(0, num)
-}
-
-export function getBlogSlugs(): string[] {
-  return getAllPosts()
-    .filter(post => post.metadata.category === 'blog')
-    .map(post => post.slug)
-}
-
-export function sortTagsByCount(tags: ITag[]): string[] {
-  return tags.sort((a, b) => b.count - a.count).map(tag => tag.name)
-}
-
-export function getPostsByTagSlug(posts: Post[], tag: string): Post[] {
-  return posts.filter((post) => {
-    return post.metadata.tags?.includes(tag) || false
-  })
 }
