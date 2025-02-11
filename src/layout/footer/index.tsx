@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
+import { SubscribeModal } from '@/components/common/operations/subscribe/modal'
 import { siteConfig } from '@/config/site'
 import { Github, Mail, Rss } from 'lucide-react'
 import Link from 'next/link'
@@ -42,6 +43,7 @@ export function Footer() {
               <Icon className="size-6" />
             </Link>
           ))}
+          <SubscribeModal />
         </div>
       </footer>
     </NormalContainer>

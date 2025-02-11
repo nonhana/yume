@@ -6,25 +6,33 @@ import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
 const MessageSchema = z.object({
-  message: z.string()
-    .min(1, '消息不能为空')
-    .max(500, '消息长度不能超过500字符'),
+  message: z.string().min(1, '消息不能为空').max(500, '消息长度不能超过500字符'),
 })
 
-export async function createMessage(formData: FormData) {
+interface MessageState {
+  success: boolean
+  message: string
+}
+
+export async function createMessage(_currentState: MessageState, formData: FormData) {
   const user = await currentUser()
 
   if (!user) {
-    throw new Error('User not authenticated')
+    return {
+      success: false,
+      message: '请先登录',
+    }
   }
 
-  // 验证表单数据
   const validationResult = MessageSchema.safeParse({
     message: formData.get('message'),
   })
 
   if (!validationResult.success) {
-    throw new Error(validationResult.error.errors[0].message)
+    return {
+      success: false,
+      message: validationResult.error.errors.map(err => err.message).join('\n'),
+    }
   }
 
   await db.message.create({
@@ -37,4 +45,8 @@ export async function createMessage(formData: FormData) {
   })
 
   revalidatePath('/message')
+  return {
+    success: true,
+    message: '留言发送成功',
+  }
 }

@@ -2,33 +2,28 @@
 
 import { GrowTextarea } from '@/components/ui/ym/grow-textarea'
 import { Send } from 'lucide-react'
-import { useState } from 'react'
-import { useFormStatus } from 'react-dom'
+import { useActionState, useState } from 'react'
 import { toast } from 'sonner'
 import { createMessage } from './actions'
 
 export function MessageForm() {
   const [message, setMessage] = useState('')
 
-  const { pending } = useFormStatus()
+  const [state, formAction, isPending] = useActionState(createMessage, {
+    message: '',
+    success: false,
+  })
 
-  const formAction = async (formData: FormData) => {
-    try {
-      await createMessage(formData)
-      setMessage('')
-      toast.success('Message sent successfully')
-    }
-    catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message)
-      }
-      else {
-        toast.error('An error occurred')
-      }
+  const handleSubmit = async (formData: FormData) => {
+    await formAction(formData)
+    setMessage('')
+    if (state.message) {
+      toast[state.success ? 'success' : 'error'](state.message)
     }
   }
+
   return (
-    <form action={formAction}>
+    <form action={handleSubmit}>
 
       <div className="relative">
         <GrowTextarea
@@ -42,9 +37,9 @@ export function MessageForm() {
         </GrowTextarea>
 
         <button
-          disabled={pending}
+          disabled={isPending}
           type="submit"
-          className="text-foreground/80 absolute right-1 top-1 p-2"
+          className="absolute right-1 top-1 p-2"
         >
           <Send className="size-5" />
         </button>
