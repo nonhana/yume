@@ -1,5 +1,4 @@
-import { MessageForm } from '@/components/module/message/message-form'
-import Messages from '@/components/module/message/messages'
+import MessagesPage from '@/components/module/message/message-page'
 import { currentUser } from '@clerk/nextjs/server'
 import { Suspense } from 'react'
 
@@ -8,23 +7,18 @@ export default async function Page() {
 
   return (
     <div className="mt-10 flex w-full flex-col gap-8">
-      <Suspense fallback={
-        <div className="text-muted-foreground flex h-20 items-center justify-center text-2xl"> Loading... </div>
-      }
-      >
+      <Suspense fallback={<div> Loading1... </div>}>
         {user
           ? (
-              <MessageForm />
+              <Suspense fallback={<div> Loading2... </div>}>
+                <MessagesPage />
+              </Suspense>
             )
           : (
-              <div className="bg-secondary text-muted-foreground flex h-20 items-center justify-start rounded-lg px-10 pr-2 text-sm">
-                请登录
+              <div>
+                请先登录
               </div>
             )}
-      </Suspense>
-
-      <Suspense fallback={<div />}>
-        <Messages />
       </Suspense>
     </div>
   )

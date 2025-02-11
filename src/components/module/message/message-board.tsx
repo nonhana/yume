@@ -1,12 +1,9 @@
 import type { Message } from '@/types/message'
 import { RelativeTime } from '@/components/common/time'
-import { db } from '@/db'
 
 import Image from 'next/image'
 
-export default async function Messages() {
-  const messages = await getMessages()
-
+export function MessageBoard({ messages }: { messages: Message[] }) {
   return (
     <ul className="flex flex-col space-y-4">
       {messages.map(message => (
@@ -16,7 +13,7 @@ export default async function Messages() {
   )
 }
 
-function MessageItem({ message }: { message: Message }) {
+export function MessageItem({ message }: { message: Message }) {
   return (
     <li key={message.id}>
       <div className="flex gap-3">
@@ -45,14 +42,4 @@ function MessageItem({ message }: { message: Message }) {
       </div>
     </li>
   )
-}
-
-async function getMessages() {
-  const data = await db.message.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-  })
-
-  return data
 }

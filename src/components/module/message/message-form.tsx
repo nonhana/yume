@@ -1,50 +1,63 @@
 'use client'
 
+import type { Message } from '@/types/message'
 import { GrowTextarea } from '@/components/ui/ym/grow-textarea'
 import { Send } from 'lucide-react'
-import { useActionState, useState } from 'react'
+import { useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import { createMessage } from './actions'
 
-export function MessageForm() {
-  const [message, setMessage] = useState('')
+interface Props {
+  messages: Message[]
+  setOptimisticMessages: (updateFn: (messages: Message[]) => Message[]) => void
+}
 
-  const [state, formAction, isPending] = useActionState(createMessage, {
-    message: '',
-    success: false,
-  })
+export function MessageForm({ messages, setOptimisticMessages }: Props) {
+  const [message, setMessage] = useState('')
+  const [isPending, startTransition] = useTransition()
 
   const handleSubmit = async (formData: FormData) => {
-    await formAction(formData)
+    const newMessage = formData.get('message') as string
+    if (!newMessage)
+      return
+
+    const optimisticMessage: Message = {
+      id: Date.now().toString(),
+      message: newMessage,
+      createdAt: new Date(),
+      userId: 'temp-id',
+      userName: '发送中...',
+      userImg: '/default-avatar.png',
+    }
+
+    startTransition(() => {
+      setOptimisticMessages(prevMessages => [optimisticMessage, ...prevMessages])
+    })
+
     setMessage('')
-    if (state.message) {
-      toast[state.success ? 'success' : 'error'](state.message)
+
+    const result = await createMessage(messages, formData)
+
+    if (result.message) {
+      toast[result.success ? 'success' : 'error'](result.message)
     }
   }
 
   return (
     <form action={handleSubmit}>
-
       <div className="relative">
         <GrowTextarea
           name="message"
-          placeholder="share something ?"
+          placeholder="有什么想说的呢？"
           value={message}
           onChange={e => setMessage(e.target.value)}
           maxLength={500}
           className="rounded-xl pr-8"
-        >
-        </GrowTextarea>
-
-        <button
-          disabled={isPending}
-          type="submit"
-          className="absolute right-1 top-1 p-2"
-        >
+        />
+        <button disabled={isPending} type="submit" className="absolute right-1 top-1 p-2">
           <Send className="size-5" />
         </button>
       </div>
-
     </form>
   )
 }

@@ -6,3 +6,5 @@ export interface Message {
   message: string
   createdAt: Date
 }
+
+export type CreateMessage = Omit<Message, 'id' | 'createdAt'>
