@@ -1,4 +1,4 @@
-import MessagesPage from '@/components/module/message/message-page'
+import MessagesPage from '@/components/module/message/page'
 import { currentUser } from '@clerk/nextjs/server'
 import { Suspense } from 'react'
 

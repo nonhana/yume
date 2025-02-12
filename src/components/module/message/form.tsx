@@ -1,45 +1,49 @@
 'use client'
 
-import type { Message } from '@/types/message'
+import type { Message } from '@prisma/client'
 import { GrowTextarea } from '@/components/ui/ym/grow-textarea'
+import { useUser } from '@clerk/nextjs'
 import { Send } from 'lucide-react'
-import { useState, useTransition } from 'react'
+import { useActionState, useState } from 'react'
 import { toast } from 'sonner'
 import { createMessage } from './actions'
 
 interface Props {
-  messages: Message[]
   setOptimisticMessages: (updateFn: (messages: Message[]) => Message[]) => void
 }
 
-export function MessageForm({ messages, setOptimisticMessages }: Props) {
+export function MessageForm({ setOptimisticMessages }: Props) {
   const [message, setMessage] = useState('')
-  const [isPending, startTransition] = useTransition()
+  const [state, formAction, isPending] = useActionState(createMessage, { message: '', success: false })
+  const { user } = useUser()
+
+  if (!user) {
+    return <div>请先登录</div>
+  }
 
   const handleSubmit = async (formData: FormData) => {
     const newMessage = formData.get('message') as string
     if (!newMessage)
       return
 
-    const optimisticMessage: Message = {
-      id: Date.now().toString(),
+    const optimisticMessage: Message & { isSending?: boolean } = {
       message: newMessage,
+      userId: user.id,
+      userName: (user.username || user.firstName) ?? '神秘',
+      userImg: user.imageUrl,
       createdAt: new Date(),
-      userId: 'temp-id',
-      userName: '发送中...',
-      userImg: '/default-avatar.png',
+      // fake id
+      id: Math.random(),
+      isSending: true,
     }
 
-    startTransition(() => {
-      setOptimisticMessages(prevMessages => [optimisticMessage, ...prevMessages])
-    })
+    setOptimisticMessages(prevMessages => [optimisticMessage, ...prevMessages])
 
     setMessage('')
 
-    const result = await createMessage(messages, formData)
-
-    if (result.message) {
-      toast[result.success ? 'success' : 'error'](result.message)
+    await formAction(formData)
+    if (state.message) {
+      toast[state.success ? 'success' : 'error'](state.message)
     }
   }
 

@@ -14,7 +14,7 @@ interface MessageState {
   message: string
 }
 
-export async function createMessage(_currentState: MessageState, formData: FormData) {
+export async function createMessage(_currentState: MessageState, formData: FormData): Promise<MessageState> {
   const user = await currentUser()
 
   if (!user) {
@@ -48,5 +48,53 @@ export async function createMessage(_currentState: MessageState, formData: FormD
   return {
     success: true,
     message: '留言发送成功',
+  }
+}
+
+export async function deleteMessage(messageId: number): Promise<{ success: boolean, message: string }> {
+  const user = await currentUser()
+
+  if (!user) {
+    return {
+      success: false,
+      message: '请先登录',
+    }
+  }
+
+  try {
+    const message = await db.message.findUnique({
+      where: { id: messageId },
+    })
+
+    if (!message) {
+      return {
+        success: false,
+        message: '留言不存在',
+      }
+    }
+
+    if (message.userId !== user.id) {
+      return {
+        success: false,
+        message: '您没有权限删除这条留言',
+      }
+    }
+
+    await db.message.delete({
+      where: { id: messageId },
+    })
+
+    revalidatePath('/message')
+    return {
+      success: true,
+      message: '留言已成功删除',
+    }
+  }
+  catch (error) {
+    console.error(`出错了！原因是${error}`)
+    return {
+      success: false,
+      message: '删除留言时出错',
+    }
   }
 }

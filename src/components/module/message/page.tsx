@@ -1,4 +1,4 @@
-import MessageContainer from '@/components/module/message/message-container'
+import MessageContainer from '@/components/module/message/container'
 import { db } from '@/db'
 
 async function getMessages() {
