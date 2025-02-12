@@ -62,7 +62,7 @@ export function Typewriter({
     )
 
     return () => clearTimeout(timer)
-  }, [text, isDeleting, type, deletingSpeed, typingSpeed, isWaiting])
+  }, [isDeleting, type, deletingSpeed, typingSpeed, isWaiting])
 
   return (
     <span className={cn('inline-block', className)}>
@@ -73,7 +73,7 @@ export function Typewriter({
           animate={{ opacity: [1, 0] }}
           transition={{
             duration: blinkSpeed,
-            repeat: Infinity,
+            repeat: Number.POSITIVE_INFINITY,
             repeatType: 'reverse',
             ease: 'easeInOut',
           }}
