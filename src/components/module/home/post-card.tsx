@@ -22,7 +22,7 @@ export function PostCard({ post, className }: PostCardProps) {
         </p>
       </div>
       <div
-        className="relative aspect-[4/3] w-48 shrink-0 overflow-hidden rounded-lg transition-transform group-hover:shadow-lg"
+        className="relative aspect-4/3 w-48 shrink-0 overflow-hidden rounded-lg transition-transform group-hover:shadow-lg"
       >
         <Image
           src={post.metadata.cover.replace('http://localhost:3000', '')}

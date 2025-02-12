@@ -63,7 +63,7 @@ export function IntroCard() {
           transform: 'translateZ(75px)',
           transformStyle: 'preserve-3d',
         }}
-        className="absolute inset-0 rounded-3xl shadow shadow-slate-300"
+        className="absolute inset-0 rounded-3xl shadow-sm shadow-slate-300"
       >
 
         <div

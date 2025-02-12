@@ -21,7 +21,7 @@ export function PostCard({ src, alt, title, summary, date, mode, className }: Po
     <motion.div
       className={
         cn(
-          'flex w-72 flex-col gap-y-3 rounded-xl p-4 shadow-md backdrop-blur-sm',
+          'flex w-72 flex-col gap-y-3 rounded-xl p-4 shadow-md backdrop-blur-xs',
           'group',
           'transition-all duration-300 hover:shadow-lg',
           {
@@ -36,7 +36,7 @@ export function PostCard({ src, alt, title, summary, date, mode, className }: Po
       onPointerLeave={() => setIsPressed(false)}
       animate={{ scale: isPressed ? 1.05 : 1 }}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+      <div className="relative aspect-4/3 w-full overflow-hidden rounded-lg">
         <Image
           src={src}
           alt={alt}

@@ -1,7 +1,7 @@
 'use client'
 
 import type { Message } from '@prisma/client'
-import { GrowTextarea } from '@/components/ui/ym/grow-textarea'
+import { Textarea } from '@/components/ui/textarea'
 import { useUser } from '@clerk/nextjs'
 import { Send } from 'lucide-react'
 import { useActionState, useState } from 'react'
@@ -50,13 +50,13 @@ export function MessageForm({ setOptimisticMessages }: Props) {
   return (
     <form action={handleSubmit}>
       <div className="relative">
-        <GrowTextarea
+        <Textarea
           name="message"
           placeholder="有什么想说的呢？"
           value={message}
           onChange={e => setMessage(e.target.value)}
           maxLength={500}
-          className="rounded-xl pr-8"
+          className="field-sizing-content max-h-96 min-h-[none] resize-none rounded-xl pr-8"
         />
         <button disabled={isPending} type="submit" className="absolute right-1 top-1 p-2">
           <Send className="size-5" />

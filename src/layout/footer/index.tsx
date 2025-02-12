@@ -28,7 +28,7 @@ const links: FooterLink[] = [
 export function Footer() {
   return (
     <NormalContainer className="py-0">
-      <footer className="bg-background/80 flex-between z-50 w-full border-t px-8 py-4 backdrop-blur">
+      <footer className="bg-background/80 flex-between z-50 w-full border-t px-8 py-4 backdrop-blur-sm">
         <div className="text-md">
           <span>© 2024~2025 sayoriqwq.</span>
         </div>
