@@ -29,6 +29,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.13.1",
     "ahooks": "^3.8.4",
     "class-variance-authority": "^0.7.1",
@@ -83,5 +84,10 @@
   },
   "lint-staged": {
     "*": "biome lint --write"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "rehype-pretty-code@0.14.0": "patches/rehype-pretty-code@0.14.0.patch"
+    }
   }
 }

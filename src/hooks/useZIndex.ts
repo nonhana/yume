@@ -6,7 +6,7 @@ export function useZIndex(initialIndex: number) {
   const updateZIndex = () => {
     const els = document.querySelectorAll('.elements')
 
-    let maxZIndex = -Infinity
+    let maxZIndex = Number.NEGATIVE_INFINITY
 
     els.forEach((el) => {
       const zIndex = Number.parseInt(

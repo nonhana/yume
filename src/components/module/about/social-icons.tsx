@@ -29,7 +29,7 @@ const iconAnimation = {
     rotate: [-5, 5, -5, 5, 0],
     transition: {
       rotate: {
-        repeat: Infinity,
+        repeat: Number.POSITIVE_INFINITY,
         duration: 0.4,
       },
       scale: {

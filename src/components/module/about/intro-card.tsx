@@ -6,7 +6,8 @@ import {
   useMotionValue,
   useSpring,
 } from 'framer-motion'
-import React, { useRef } from 'react'
+import type React from 'react'
+import { useRef } from 'react'
 import { Intro } from './intro'
 
 const ROTATION_RANGE = 32.5

@@ -1,0 +1,81 @@
+.prose {
+  @apply max-w-full;
+}
+
+/* heading with a */
+.prose .link-anchor {
+  @apply text-primary relative no-underline;
+}
+
+.prose .link-anchor::before {
+  content: "#";
+  position: absolute;
+  left: -0.8em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.prose .link-anchor::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+.prose .link-anchor:hover::before {
+  opacity: 1;
+}
+
+.prose .link-anchor:hover::after {
+  width: 100%;
+}
+
+/* https://ui.shadcn.com/docs/components/typography */
+
+/* headings */
+.prose h1 {
+  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+
+.prose h2 {
+  @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+}
+
+.prose h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+
+.prose h4 {
+  @apply scroll-m-20 text-xl font-semibold tracking-tight;
+}
+
+/* other element */
+
+.prose p {
+  @apply leading-7 [&:not(:first-child)]:mt-6;
+}
+
+.prose blockquote {
+  @apply mt-6 border-l-2 pl-6 italic;
+}
+
+/* code line number */
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  display: inline-block;
+  width: 0.75rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}

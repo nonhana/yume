@@ -1,8 +1,9 @@
-import { CustomMDX } from '@/components/mdx/mdx'
-import { getAllPosts } from '@/components/mdx/utils'
-import { BlogMetadata } from '@/components/module/post/blog-metadata'
-import { TableOfContents } from '@/components/toc/toc'
-import { notFound } from 'next/navigation'
+import { CustomMDX } from "@/components/mdx/mdx"
+import { PostHeader } from "@/components/mdx/post-header"
+import { getAllPosts } from "@/components/mdx/utils"
+import { TableOfContents } from "@/components/toc/toc"
+import { NormalContainer } from "@/layout/container/Normal"
+import { notFound } from "next/navigation"
 
 export async function generateStaticParams() {
   const posts = getAllPosts()
@@ -12,27 +13,27 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Page(
-  props: {
-    params: Promise<{ slug: string }>
-  },
-) {
-  const params = await props.params
-  const post = getAllPosts().find(post => post.slug === params.slug)
+interface Props {
+  params: Promise<{ slug: string }>
+}
+
+export default async function Page({ params }: Props) {
+  const { slug } = await params
+  const post = getAllPosts().find(post => post.slug === slug)
 
   if (!post) {
     notFound()
   }
 
   return (
-    <div className="bg-background grid grid-cols-[1fr_250px] gap-10">
-      <article className="prose dark:prose-invert">
-        <BlogMetadata metadata={post.metadata} />
-        <div className="flex flex-col">
-        </div>
+    <NormalContainer className='bg-background flex gap-20 min-w-128 max-w-full px-10 lg:px-40'>
+      <article className='prose dark:prose-invert p-10'>
+        <PostHeader metadata={post.metadata} />
         <CustomMDX source={post.content} />
       </article>
-      <TableOfContents />
-    </div>
+      <div className='lg:block hidden'>
+        <TableOfContents />
+      </div>
+    </NormalContainer>
   )
 }

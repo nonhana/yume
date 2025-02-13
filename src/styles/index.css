@@ -1,6 +1,6 @@
-@import './tailwind.css';
-@import './mdx.css';
-@import './lenis.css';
-@import './scrollbar.css';
-@import './variables.css';
-@import './mode-toggle.css';
+@import "./tailwind.css";
+@import "./lenis.css";
+@import "./scrollbar.css";
+@import "./variables.css";
+@import "./mode-toggle.css";
+@import "./prose.css";

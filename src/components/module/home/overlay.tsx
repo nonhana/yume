@@ -18,7 +18,7 @@ function ArrowToNext() {
       }}
       transition={{
         duration: 2,
-        repeat: Infinity,
+        repeat: Number.POSITIVE_INFINITY,
         ease: 'easeInOut',
       }}
     >
