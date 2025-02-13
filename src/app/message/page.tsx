@@ -1,25 +1,22 @@
-import MessagesPage from '@/components/module/message/page'
-import { currentUser } from '@clerk/nextjs/server'
-import { Suspense } from 'react'
+import MessageContainer from "@/components/module/message/container"
+import { db } from "@/db"
+
+async function getMessages() {
+  const messages = await db.message.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
+  return messages
+}
 
 export default async function Page() {
-  const user = await currentUser()
+  // 在这个服务器组件里获取数据，并且往下传递
+  const initialMessages = await getMessages()
 
   return (
-    <div className="mt-10 flex w-full flex-col gap-8">
-      <Suspense fallback={<div> Loading1... </div>}>
-        {user
-          ? (
-              <Suspense fallback={<div> Loading2... </div>}>
-                <MessagesPage />
-              </Suspense>
-            )
-          : (
-              <div>
-                请先登录
-              </div>
-            )}
-      </Suspense>
+    <div className="mt-16">
+      <MessageContainer initialMessages={initialMessages} />
     </div>
   )
 }

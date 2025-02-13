@@ -88,7 +88,7 @@
   --accent-foreground: hsl(0 0% 9%);
   --border: hsl(0 0% 89.8%);
   --input: hsl(0 0% 89.8%);
-  --ring: var(--color-yume-gray-200);
+  --ring: var(--color-yume-green-500);
 
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 98%);
@@ -117,7 +117,7 @@
   --accent-foreground: hsl(0 0% 98%);
   --border: hsl(0 0% 14.9%);
   --input: hsl(0 0% 14.9%);
-  --ring: var(--color-yume-gray-800);
+  --ring: var(--color-yume-green-400);
 
   --destructive: hsl(0 62.8% 30.6%);
   --destructive-foreground: hsl(0 0% 98%);
@@ -161,7 +161,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 ring-ring;
+    @apply border-border outline-ring/50;
   }
 
   body {

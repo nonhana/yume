@@ -13,7 +13,7 @@ export default function MessageContainer({ initialMessages }: { initialMessages:
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-10">
       <MessageForm setOptimisticMessages={setOptimisticMessages} />
       <MessageBoard messages={optimisticMessages} onDelete={handleDelete} />
     </div>

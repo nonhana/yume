@@ -52,7 +52,7 @@ export function MessageItem({ message, onDelete }: Props) {
           </div>
 
           <div className="flex items-center gap-3">
-            <p className="shadow-2xs bg-card text-md relative w-fit break-words rounded-xl px-4 py-2">
+            <p className="shadow-2xs bg-card relative w-fit break-words rounded-xl px-4 py-2">
               {message.message}
             </p>
             { message?.isSending && <Loader2 className="size-5 animate-spin" />}
