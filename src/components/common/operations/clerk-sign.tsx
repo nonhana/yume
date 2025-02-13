@@ -39,7 +39,7 @@ export function ClerkSign() {
       </SignedIn>
       <SignedOut>
         <SignInButton mode='modal'>
-          <LogIn className='size-5' />
+          <LogIn className='size-5 cursor-pointer hover:text-yume-spotlight-foreground transition-colors duration-300 ease-in-out' />
         </SignInButton>
       </SignedOut>
     </div>

@@ -1,4 +1,16 @@
 :root {
-  --a: 88.235% 0.234 142.828; /* OKLCH 值：88.235%亮度, 0.234色度, 142.828色相 (对应 Tailwind green-200) */
-  --spotlight-color: oklch(var(--a) / 0.12); /* 使用基础颜色，设置12%透明度 */
+  --base-spotlight: 76.527% 0.14271 166.19; /*   --color-yume-green-500: oklch(76.527% 0.14271 166.19); */
+  --spotlight-color: oklch(var(--base-spotlight) / 0.2);
+  --spotlight-foreground: var(--color-yume-green-600);
+}
+
+.dark {
+  --base-spotlight: 83.377% 0.10561 169.98; /*   --color-yume-green-300: oklch(83.377% 0.10561 169.98); */
+  --spotlight-color: oklch(var(--base-spotlight) / 0.2);
+  --spotlight-foreground: var(--color-yume-green-400);
+}
+
+@theme inline {
+  --color-yume-spotlight: var(--spotlight-color);
+  --color-yume-spotlight-foreground: var(--spotlight-foreground);
 }

@@ -37,9 +37,9 @@ export function CenterNavs() {
             href={nav.href}
             className={cn(
               'relative rounded-md px-2 py-1 flex-center gap-2',
-              'hover:text-green-400 transition-colors',
+              'hover:text-yume-spotlight-foreground',
               'transition-all duration-300 ease-in-out',
-              selected === nav.href && 'text-green-400 px-4',
+              selected === nav.href && 'text-yume-spotlight-foreground px-4',
             )}
             key={nav.href}
             onClick={() => setSelected(nav.href as HeaderTabs)}

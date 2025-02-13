@@ -2,8 +2,8 @@ import type { IPostMetaData } from "@/types/post"
 
 export function PostHeader({ metadata }: { metadata: IPostMetaData }) {
   return (
-    <div className='flex-center flex-col space-y-4 py-8 text-center'>
-      <h1 className='text-3xl font-extrabold tracking-tight lg:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 hover:scale-[1.01] transition-transform'>
+    <div className='flex-center flex-col space-y-2 text-center'>
+      <h1 className='text-2xl font-extrabold tracking-tight xl:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60'>
         {metadata.title}
       </h1>
 

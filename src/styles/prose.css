@@ -1,5 +1,5 @@
 .prose {
-  @apply max-w-full;
+  @apply max-w-none;
 }
 
 /* heading with a */

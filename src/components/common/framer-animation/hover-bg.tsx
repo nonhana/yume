@@ -18,7 +18,7 @@ export function HoverBg({ children, className }: PropsWithCC) {
       {isHovered && (
         <motion.div
           layoutId="hover-indicator"
-          className="absolute inset-0 z-[-1] rounded-2xl bg-green-200"
+          className="absolute inset-0 z-[-1] rounded-2xl bg-accent"
           transition={{
             type: 'spring',
             bounce: 0.25,

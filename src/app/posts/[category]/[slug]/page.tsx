@@ -2,7 +2,7 @@ import { CustomMDX } from "@/components/mdx/mdx"
 import { PostHeader } from "@/components/mdx/post-header"
 import { getAllPosts } from "@/components/mdx/utils"
 import { TableOfContents } from "@/components/toc/toc"
-import { NormalContainer } from "@/layout/container/Normal"
+import { WiderContainer } from "@/layout/container/Normal"
 import { notFound } from "next/navigation"
 
 export async function generateStaticParams() {
@@ -26,14 +26,14 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <NormalContainer className='bg-background flex gap-20 min-w-128 max-w-full px-10 lg:px-40'>
-      <article className='prose dark:prose-invert p-10'>
+    <WiderContainer className='bg-background grid grid-cols-1 gap-20 xl:grid-cols-[1fr_300px] mt-16'>
+      <article className='prose dark:prose-invert @md:p-10'>
         <PostHeader metadata={post.metadata} />
         <CustomMDX source={post.content} />
       </article>
       <div className='lg:block hidden'>
         <TableOfContents />
       </div>
-    </NormalContainer>
+    </WiderContainer>
   )
 }
