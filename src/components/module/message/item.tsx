@@ -7,7 +7,7 @@ import { useUser } from '@clerk/nextjs'
 import { Loader2, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import { useTransition } from 'react'
-import { toast } from 'sonner'
+import toast from 'react-hot-toast'
 import { deleteMessage } from './actions'
 
 interface Props {

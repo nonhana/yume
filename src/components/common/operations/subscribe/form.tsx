@@ -6,7 +6,7 @@ import { useUser } from '@clerk/nextjs'
 
 import { Loader2 } from 'lucide-react'
 import { useActionState } from 'react'
-import { toast } from 'sonner'
+import toast from 'react-hot-toast'
 import { createSubscriber } from './action'
 
 export function SubscribeForm() {

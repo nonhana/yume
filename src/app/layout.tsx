@@ -1,7 +1,7 @@
-import { Toaster } from '@/components/ui/sonner'
 import { Footer } from '@/layout/footer'
 import { Header } from '@/layout/header'
 import { Providers } from '@/providers/providers'
+import { Toaster } from 'react-hot-toast'
 import '@/styles/index.css'
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </Providers>
-        <Toaster position="top-right" />
+        <Toaster position="top-center" />
       </body>
     </html>
   )

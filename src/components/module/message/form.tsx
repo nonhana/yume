@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { useUser } from '@clerk/nextjs'
 import { Send } from 'lucide-react'
 import { useActionState, useState } from 'react'
-import { toast } from 'sonner'
+import toast from 'react-hot-toast'
 import { createMessage } from './actions'
 
 interface Props {

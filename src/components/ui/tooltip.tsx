@@ -1,16 +1,17 @@
 'use client'
 
-import type * as React from 'react'
 import { cn } from '@/lib/utils'
-
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+
+import * as React from 'react'
 
 function TooltipProvider({
   delayDuration = 0,
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
   return (
-    <TooltipPrimitive
+    // eslint-disable-next-line react/no-context-provider
+    <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
       delayDuration={delayDuration}
       {...props}
