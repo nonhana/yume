@@ -1,10 +1,10 @@
-import MessageContainer from "@/components/module/message/container"
-import { db } from "@/db"
+import MessageContainer from '@/components/module/message/container'
+import { db } from '@/db'
 
 async function getMessages() {
   const messages = await db.message.findMany({
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
   })
   return messages

@@ -8,7 +8,7 @@
 }
 
 .prose .link-anchor::before {
-  content: "#";
+  content: '#';
   position: absolute;
   left: -0.8em;
   opacity: 0;
@@ -16,7 +16,7 @@
 }
 
 .prose .link-anchor::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -2px;

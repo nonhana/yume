@@ -1,12 +1,12 @@
 'use client'
 
+import type React from 'react'
 import {
   motion,
   useMotionTemplate,
   useMotionValue,
   useSpring,
 } from 'framer-motion'
-import type React from 'react'
 import { useRef } from 'react'
 import { Intro } from './intro'
 

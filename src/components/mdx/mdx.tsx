@@ -1,10 +1,10 @@
-import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc"
-import React from "react"
-import { createHeading } from "./components/elements/heading"
-import rehypePrettyCode, {
-  type Options as RehypePrettyCodeOptions,
-} from "rehype-pretty-code"
-import Pre from "./components/elements/pre"
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
+import type { Options as RehypePrettyCodeOptions } from 'rehype-pretty-code'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import React from 'react'
+import rehypePrettyCode from 'rehype-pretty-code'
+import { createHeading } from './components/elements/heading'
+import Pre from './components/elements/pre'
 
 const components = {
   h1: createHeading(1),
@@ -17,7 +17,7 @@ const components = {
 }
 
 const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
-  theme: "ayu-dark",
+  theme: 'ayu-dark',
 }
 
 export function CustomMDX(props: MDXRemoteProps) {

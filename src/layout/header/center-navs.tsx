@@ -1,4 +1,5 @@
-import { headerSelectedAtom, type HeaderTabs } from '@/atoms/header'
+import type { HeaderTabs } from '@/atoms/header'
+import { headerSelectedAtom } from '@/atoms/header'
 import { cn } from '@/lib/utils'
 import { useAtom } from 'jotai'
 import { BookText, Link2, LoaderCircle, MessageCircle } from 'lucide-react'

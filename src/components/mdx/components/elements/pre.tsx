@@ -1,14 +1,14 @@
 /* thanks for https://github.com/rehype-pretty/rehype-pretty-code/issues/235 */
 
-"use client"
+'use client'
 
-import { Check, Clipboard } from "lucide-react"
+import type { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { Check, Clipboard } from 'lucide-react'
 import {
+
   useRef,
   useState,
-  type DetailedHTMLProps,
-  type HTMLAttributes,
-} from "react"
+} from 'react'
 
 export default function Pre({
   children,
@@ -31,11 +31,11 @@ export default function Pre({
   }
 
   return (
-    <pre ref={preRef} {...props} className='relative'>
+    <pre ref={preRef} {...props} className="relative">
       <button
         disabled={isCopied}
         onClick={handleClickCopy}
-        className='absolute right-4 size-6'
+        className="absolute right-4 size-6"
       >
         {isCopied ? <Check /> : <Clipboard />}
       </button>

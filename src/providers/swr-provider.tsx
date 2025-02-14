@@ -1,4 +1,5 @@
-import { SWRConfig, type SWRConfiguration } from 'swr'
+import type { SWRConfiguration } from 'swr'
+import { SWRConfig } from 'swr'
 
 export function SWRProvider({ children }: { children: React.ReactNode }) {
   const config: SWRConfiguration = {

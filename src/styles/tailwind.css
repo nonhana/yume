@@ -65,7 +65,7 @@
   --color-neutral-700: oklch(0.371 0 0);
   --color-neutral-800: oklch(0.269 0 0);
   --color-neutral-900: oklch(0.205 0 0);
-  --color-neutral-950: oklch(0.145 0 0); 
+  --color-neutral-950: oklch(0.145 0 0);
 
   --color-lsc-blue: hsl(224, 68%, 33%);
 }

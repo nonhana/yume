@@ -1,8 +1,8 @@
-import type { PropsWithCC } from "@/types"
-import type { PropsWithChildren } from "react"
-import { cn } from "@/lib/utils"
+import type { PropsWithCC } from '@/types'
+import type { PropsWithChildren } from 'react'
+import { cn } from '@/lib/utils'
 
-const base = "container max-w-5xl px-10 py-24 mx-auto"
+const base = 'container max-w-5xl px-10 py-24 mx-auto'
 
 export function NormalLayout({ children }: PropsWithChildren) {
   return <div className={cn(base)}>{children}</div>
@@ -13,5 +13,5 @@ export function NormalContainer({ children, className }: PropsWithCC) {
 }
 
 export function WiderContainer({ children, className }: PropsWithCC) {
-  return <div className={cn(base, "max-w-8xl", className)}>{children}</div>
+  return <div className={cn(base, 'max-w-8xl', className)}>{children}</div>
 }

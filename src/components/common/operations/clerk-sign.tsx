@@ -1,14 +1,14 @@
-import { clerkModalAtom } from "@/atoms/clerk"
+import { clerkModalAtom } from '@/atoms/clerk'
 import {
   SignedIn,
   SignedOut,
   SignInButton,
   useClerk,
   UserButton,
-} from "@clerk/nextjs"
-import { useAtom } from "jotai"
-import { Loader2, LogIn } from "lucide-react"
-import { useEffect } from "react"
+} from '@clerk/nextjs'
+import { useAtom } from 'jotai'
+import { Loader2, LogIn } from 'lucide-react'
+import { useEffect } from 'react'
 
 export function ClerkSign() {
   const [_isModalOpen, setIsModalOpen] = useAtom(clerkModalAtom)
@@ -16,7 +16,7 @@ export function ClerkSign() {
 
   useEffect(() => {
     const checkModalStatus = () => {
-      const modalBackdrop = document.querySelector(".cl-modalBackdrop")
+      const modalBackdrop = document.querySelector('.cl-modalBackdrop')
       setIsModalOpen(!!modalBackdrop)
     }
 
@@ -29,17 +29,17 @@ export function ClerkSign() {
   }, [setIsModalOpen])
 
   if (!loaded) {
-    return <Loader2 className='size-5 animate-spin' />
+    return <Loader2 className="size-5 animate-spin" />
   }
 
   return (
-    <div className='flex-center size-5'>
+    <div className="flex-center size-5">
       <SignedIn>
         <UserButton />
       </SignedIn>
       <SignedOut>
-        <SignInButton mode='modal'>
-          <LogIn className='size-5 cursor-pointer hover:text-yume-spotlight-foreground transition-colors duration-300 ease-in-out' />
+        <SignInButton mode="modal">
+          <LogIn className="size-5 cursor-pointer hover:text-yume-spotlight-foreground transition-colors duration-300 ease-in-out" />
         </SignInButton>
       </SignedOut>
     </div>
